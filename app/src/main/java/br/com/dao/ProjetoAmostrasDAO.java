@@ -2,13 +2,18 @@ package br.com.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.banco.BancoDados;
 import br.com.model.ProjetoAmostras;
 
 /**
  * Created by Fernando on 02/08/2016.
+ * Esta classe é responsavel por gerenciar os processos de cadastros, updates, selects no db
  */
 public class ProjetoAmostrasDAO {
 
@@ -20,11 +25,35 @@ public class ProjetoAmostrasDAO {
 
     public void salvar(ProjetoAmostras projetoAmostras){
         ContentValues values = new ContentValues();
+        //POPULANDO O OBJETO
         values.put("nome", projetoAmostras.getNome());
-        values.put("areaInventariada", projetoAmostras.getAreaInventariada());
-        values.put("indiceConfianca", projetoAmostras.getIndiceConfianca());
+        values.put("area_inventariada", projetoAmostras.getAreaInventariada());
+        values.put("indice_confianca", projetoAmostras.getIndiceConfianca());
         values.put("status", projetoAmostras.getStatus());
-
-        db.insert("projeto_amostras", null, values);
+        //GRAVANDO NO BANCO
+        db.insert("projeto_amostra", null, values);
     }
+
+    public List<ProjetoAmostras> listar(){
+
+        String[] colunas = new String[]{"id", "nome", "area_inventariada", "indice_confianca", "status"};
+        List<ProjetoAmostras> projetoAmostras;
+        Cursor c = db.query("projeto_amostra", colunas, null, null, null,null, null);
+
+        projetoAmostras = new ArrayList<ProjetoAmostras>();
+        if(c.moveToFirst()){
+            do {
+                ProjetoAmostras pa = new ProjetoAmostras();
+                pa.setNome(c.getString(c.getColumnIndex("nome")));
+                pa.setAreaInventariada(c.getDouble(c.getColumnIndex("area_inventariada".toString())));
+                pa.setIndiceConfianca(c.getDouble(c.getColumnIndex("indice_confianca".toString())));
+                pa.setStatus(c.getString(c.getColumnIndex("status")));
+
+                projetoAmostras.add(pa);
+            }while (c.moveToNext());
+        }
+        c.close();
+        return projetoAmostras;
+    }
+
 }

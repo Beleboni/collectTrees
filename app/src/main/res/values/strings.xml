@@ -28,4 +28,13 @@
     <string name="cap">Cap:</string>
     <string name="dap">Dap:</string>
     <string name="cad_arvore">Cadastrar árvore</string>
+    <string name="nomeProjeto">Projeto:</string>
+    <string name="areaInventariada">Área inventariada:</string>
+    <string name="status">Status:</string>
+    <string name="indice_confianca">Indice confiânça:</string>
+    <string name="btn_continuar">Continuar</string>
+    <string name="btn_visualizar">Visualizar</string>
+    <string name="title_activity_activity_todas_amostras">activity_todas_amostras</string>
+    <string name="txt_todas_amostras">Todas as amostras</string>
+    <string name="txt_continuar_censo">Continuar projeto censo</string>
 </resources>

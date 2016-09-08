@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -15,18 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".NovoProjetoCenso"></activity>
-
-        <activity android:name=".PainelActivity"></activity>
-
-        <activity android:name=".NovoProjetoAmostra"></activity>
-
-        <activity android:name=".TodosProjetosAmostra"></activity>
-
-        <activity android:name=".TodosProjetosCenso"></activity>
-
-        <activity android:name=".NovaAmostra"></activity>
+        <activity android:name=".NovoProjetoCenso" />
+        <activity android:name=".PainelActivity" />
+        <activity android:name=".NovoProjetoAmostra" />
+        <activity android:name=".TodosProjetosAmostra" />
+        <activity android:name=".TodosProjetosCenso" />
+        <activity android:name=".NovaAmostra" />
+        <activity android:name=".TodasAmostras" />
+        <activity android:name=".OpcoesCenso"></activity>
     </application>
 
 </manifest>

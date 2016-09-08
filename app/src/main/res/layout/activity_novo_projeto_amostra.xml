@@ -81,6 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txt_area_inventariada"
+            android:inputType="numberDecimal"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
 
@@ -97,6 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txt_indice_confiabilidade"
+            android:inputType="numberDecimal"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_gravity="center_horizontal" />
@@ -111,7 +113,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:textColor="#FFFFFF"
-            android:onClick="nova_amostra_amostra"/>
+            android:onClick="salvarProjeto"/>
     </LinearLayout>
 
 </ScrollView>

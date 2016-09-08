@@ -2,7 +2,6 @@ package br.com.trees;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.print.PageRange;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +14,7 @@ import br.com.status.Status;
 
 /**
  * Created by Fernando on 22/04/2016.
+ * Está tela e responsavel por cadastrar um novo projeto
  */
 public class NovoProjetoCenso extends Activity {
     //PEGANDO AS VARIAVEIS
@@ -37,17 +37,18 @@ public class NovoProjetoCenso extends Activity {
         //GERANDO UM PROJETO CENSO
         ProjetoCenso projetoCenso = new ProjetoCenso();
         projetoCenso.setNome(txtNome.getText().toString());
-        projetoCenso.setAreaInventariada(Float.parseFloat(txtAreaInventariada.getText().toString()));
+        projetoCenso.setAreaInventariada(Double.parseDouble(txtAreaInventariada.getText().toString()));
         projetoCenso.setDataCadastro(new Date());
         projetoCenso.setStatus(Status.EM_PROGRESSO.toString());
 
         //SALVANDO O PROJETO CENSO
         dao.salvar(projetoCenso);
+        //LIMPANDO OS DADOS DOS CAMPOS
+        txtNome.setText("");
+        txtAreaInventariada.setText("");
+
         //MENSAGEM DE SUCESSO
         Toast.makeText(this, "Projeto criado com sucesso", Toast.LENGTH_LONG).show();
     }
-
-
-
 
 }

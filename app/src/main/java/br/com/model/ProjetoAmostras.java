@@ -9,8 +9,8 @@ public class ProjetoAmostras {
 
     private Long id;
     private String nome;
-    private Float areaInventariada;
-    private Float indiceConfianca;
+    private Double areaInventariada;
+    private Double indiceConfianca;
     private String status;
     private Date dataCadastro;
 
@@ -33,19 +33,19 @@ public class ProjetoAmostras {
         this.nome = nome;
     }
 
-    public Float getAreaInventariada() {
+    public Double getAreaInventariada() {
         return areaInventariada;
     }
 
-    public void setAreaInventariada(Float areaInventariada) {
+    public void setAreaInventariada(Double areaInventariada) {
         this.areaInventariada = areaInventariada;
     }
 
-    public Float getIndiceConfianca() {
+    public Double getIndiceConfianca() {
         return indiceConfianca;
     }
 
-    public void setIndiceConfianca(Float indiceConfianca) {
+    public void setIndiceConfianca(Double indiceConfianca) {
         this.indiceConfianca = indiceConfianca;
     }
 

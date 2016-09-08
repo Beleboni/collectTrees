@@ -12,7 +12,7 @@ public class DadosProjetoAmostra {
     private ProjetoAmostras idProjeto;
     private Arvore idArvore;
     private Float cap;
-    private Float dap;
+    private Float altura;
     private Date dataCadastro;
 
     public DadosProjetoAmostra() {
@@ -58,12 +58,12 @@ public class DadosProjetoAmostra {
         this.cap = cap;
     }
 
-    public Float getDap() {
-        return dap;
+    public Float getAltura() {
+        return altura;
     }
 
-    public void setDap(Float dap) {
-        this.dap = dap;
+    public void setAltura(Float dap) {
+        this.altura = altura;
     }
 
     public Date getDataCadastro() {

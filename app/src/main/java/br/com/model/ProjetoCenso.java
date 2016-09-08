@@ -9,7 +9,7 @@ public class ProjetoCenso {
 
     private Long id;
     private String nome;
-    private Float areaInventariada;
+    private Double areaInventariada;
     private String status;
     private Date dataCadastro;
 
@@ -32,11 +32,11 @@ public class ProjetoCenso {
         this.status = status;
     }
 
-    public Float getAreaInventariada() {
+    public Double getAreaInventariada() {
         return areaInventariada;
     }
 
-    public void setAreaInventariada(Float areaInventariada) {
+    public void setAreaInventariada(Double areaInventariada) {
         this.areaInventariada = areaInventariada;
     }
 

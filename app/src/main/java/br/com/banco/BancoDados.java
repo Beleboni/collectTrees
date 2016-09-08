@@ -10,13 +10,17 @@ public class BancoDados {
 	// Controle de versao
 	private static final int VERSAO_BANCO = 1;
 	// Script para fazer drop na tabela
-	private static final String[] SCRIPT_DATABASE_DELETE = new String[] { "DROP TABLE IF EXISTS projeto_censo;"
-																		 };
+	private static final String[] SCRIPT_DATABASE_DELETE = new String[] { "DROP TABLE IF EXISTS projeto_censo;","DROP TABLE IF EXISTS projeto_amostra;", "DROP TABLE IF EXISTS amostras;", "DROP TABLE EXISTS dados_projeto_censo;", "DROP TABLE EXISTS dados_projeto_amostra;", "DROP TABLE EXISTS arvore;" };
 
-	
 	// Cria a tabela com o "_id" sequencial
 	private static final String[] SCRIPT_DATABASE_CREATE = new String[] {
-            "create table projeto_censo(_id integer primary key, nome text, areaInventariada float, dataCadastro date, status text);"
+            "create table if not exists projeto_censo(id integer primary key, nome text, area_inventariada double, data_cadastro date, status text);",
+			"create table if not exists projeto_amostra(id integer primary key, nome text, area_inventariada double, data_cadastro date, indice_confianca double, status text);",
+			"create table if not exists amostras(id integer primary key, id_projeto, nome text, tamanho double, foreign key(id_projeto) references projeto_amostra(id));",
+			"create table if not exists arvore(id integer primary key, nome_comum text, nome_cientifico text, familia text, fator_forma double);",
+			"create table if not exists dados_projeto_amostra(id primary key, id_arvore integer, id_projeto integer, cap double, altura double, foreign key(id_projeto) references projeto_amostra(id), foreign key(id_arvore) references arvore(id));",
+			"create table if not exists dados_projeto_censo(id integer primary key, id_projeto integer, id_arvore integer, cap double, altura double, foreign key(id_projeto) references projeto_censo(id), foreign key(id_arvore) references arvore(id));"
+
 	};
 
 	private static SQLiteDatabase db;
