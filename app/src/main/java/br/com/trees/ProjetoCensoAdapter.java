@@ -43,4 +43,6 @@ public class ProjetoCensoAdapter extends ArrayAdapter<ProjetoCenso> {
 
         return view;
     }
+
+
 }

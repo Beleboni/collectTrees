@@ -68,24 +68,6 @@
             android:layout_marginRight="10dp"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/fator_forma"
-            android:id="@+id/tvt_area_inventariada"
-            android:textColor="#186110"
-            android:layout_marginLeft="10dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/txt_tamanho"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

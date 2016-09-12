@@ -48,54 +48,13 @@
             android:id="@+id/textView"
             android:textColor="#186110"
             android:layout_marginLeft="10dp"
-            android:layout_marginBottom="30dp"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/nome_comum"
-            android:id="@+id/tvt_nome_projeto"
-            android:textColor="#186110"
-            android:layout_marginLeft="10dp" />
-
-        <EditText
+        <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txt_nome_projeto"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            />
+            android:id="@+id/ac_buscar" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/fator_forma"
-            android:id="@+id/tvt_area_inventariada"
-            android:textColor="#186110"
-            android:layout_marginLeft="10dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/txt_tamanho"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pesquisar"
-            android:id="@+id/btn_criar_projeto_censo"
-            android:background="#186110"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textColor="#FFFFFF"/>
     </LinearLayout>
 
 </ScrollView>

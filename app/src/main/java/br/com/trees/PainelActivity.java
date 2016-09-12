@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import br.com.builder.ArvoreBuilder;
+
 /**
  * Created by Fernando on 22/04/2016.
  */
@@ -13,6 +15,9 @@ public class PainelActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ArvoreBuilder.build(this);
+
         setContentView(R.layout.activity_painel);
     }
 

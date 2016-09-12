@@ -37,7 +37,7 @@ public class ProjetoCensoDAO {
 
     public List<ProjetoCenso> listar(){
 
-        String[] colunas = new String[]{"id", "nome", "area_inventariada", "status"};
+        String[] colunas = new String[]{"id", "nome", "area_inventariada", "data_cadastro", "status"};
         List<ProjetoCenso> projetoCensos;
         Cursor c = db.query("projeto_censo", colunas, null, null, null, null, null);
 
@@ -45,6 +45,7 @@ public class ProjetoCensoDAO {
         if(c.moveToFirst()){
             do {
                 ProjetoCenso projetoCenso = new ProjetoCenso();
+                projetoCenso.setId(c.getLong(c.getColumnIndex("id")));
                 projetoCenso.setNome(c.getString(c.getColumnIndex("nome")));
                 projetoCenso.setAreaInventariada(c.getDouble(c.getColumnIndex("area_inventariada".toString())));
                 projetoCenso.setStatus(c.getString(c.getColumnIndex("status")));
@@ -54,6 +55,22 @@ public class ProjetoCensoDAO {
         }
         c.close();
         return projetoCensos;
+    }
+
+
+    public ProjetoCenso buscar(String id){
+        String[] colunas = new String[]{"id", "nome", "area_inventariada", "status"};
+        String[] args = new String[]{id};
+
+        Cursor c = db.query("projeto_censo", colunas, "id = ?", args, null, null, null, null);
+
+        c.moveToFirst();
+        ProjetoCenso projetoCenso = new ProjetoCenso();
+        projetoCenso.setId(c.getLong(c.getColumnIndex("id")));
+        projetoCenso.setNome(c.getString(c.getColumnIndex("nome")));
+        projetoCenso.setAreaInventariada(c.getDouble(c.getColumnIndex("area_inventariada".toString())));
+        projetoCenso.setStatus(c.getString(c.getColumnIndex("status")));
+        return projetoCenso;
     }
 
 

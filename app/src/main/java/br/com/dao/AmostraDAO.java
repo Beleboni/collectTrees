@@ -30,5 +30,21 @@ public class AmostraDAO {
         db.insert("amostra", null, values);
     }
 
+//    public List<Amostra> listar(){
+//
+//        String[] colunas = new String[]{"id", "id_projeto", "nome", "tamanho"};
+//        List<Amostra> amostras;
+//        Cursor c = db.query("amostra", colunas, null, null, null, null, null);
+//
+//        amostras = new ArrayList<Amostra>();
+//        if(c.moveToFirst()){
+//            do{
+//                Amostra a = new Amostra();
+//                a.getNome()
+//            }
+//        }
+//
+//    }
+
 
 }

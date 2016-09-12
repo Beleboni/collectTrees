@@ -9,9 +9,15 @@ public class Arvore {
     private String nomeComum;
     private String nomeCientifico;
     private String familia;
-    private String fatorForma;
+    private Double fatorForma;
 
-    public Arvore() {
+    public Arvore() {}
+
+    public Arvore(String nomeComum, String nomeCientifico, String familia, Double fatorForma) {
+        this.nomeComum = nomeComum;
+        this.nomeCientifico = nomeCientifico;
+        this.familia = familia;
+        this.fatorForma = fatorForma;
     }
 
     public Long getId() {
@@ -46,11 +52,16 @@ public class Arvore {
         this.familia = familia;
     }
 
-    public String getFatorForma() {
+    public Double getFatorForma() {
         return fatorForma;
     }
 
-    public void setFatorForma(String fatorForma) {
+    public void setFatorForma(Double fatorForma) {
         this.fatorForma = fatorForma;
+    }
+
+    @Override
+    public String toString() {
+        return this.getNomeComum()+ " - " + this.getNomeCientifico();
     }
 }

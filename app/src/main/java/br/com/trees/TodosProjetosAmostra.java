@@ -3,8 +3,6 @@ package br.com.trees;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import java.util.List;
@@ -38,6 +36,7 @@ public class TodosProjetosAmostra extends ListActivity {
         setListAdapter(adapter);
 
     }
+
 
     public void abre_todas_amostras(View v){
         Intent abre_todas_amostras = new Intent(this, TodasAmostras.class);

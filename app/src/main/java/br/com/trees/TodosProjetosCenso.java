@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -34,12 +35,13 @@ public class TodosProjetosCenso extends ListActivity {
 
         //PASSANDO O ADAPTER
         setListAdapter(adapter);
-
     }
 
-
-    public void abre_opcoes_censo(View v){
-        Intent abre_opcoes_censo = new Intent(this, OpcoesCenso.class);
-        startActivity(abre_opcoes_censo);
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Intent it = new Intent(this, OpcoesCenso.class);
+        it.putExtra("idProjetoCenso", this.adapter.getItem(position).getId().toString());
+        startActivity(it);
     }
+
 }

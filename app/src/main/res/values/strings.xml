@@ -20,7 +20,7 @@
     <string name="nome_amostra">Nome amostra</string>
     <string name="tamanho_amostra">Tamanho da amostra</string>
     <string name="criar_amostra">Criar amostra</string>
-    <string name="pesquise">Pesquisar por:</string>
+    <string name="pesquise">Pesquisar pelo nome comum:</string>
     <string name="nome_comum">Nome comum:</string>
     <string name="fator_forma">Fator forma:</string>
     <string name="pesquisar">Pesquisar</string>
@@ -37,4 +37,6 @@
     <string name="title_activity_activity_todas_amostras">activity_todas_amostras</string>
     <string name="txt_todas_amostras">Todas as amostras</string>
     <string name="txt_continuar_censo">Continuar projeto censo</string>
+    <string name="btn_define_arvore">Define árvore</string>
+    <string name="txt_cadastradas">Quant. cadastradas:</string>
 </resources>
