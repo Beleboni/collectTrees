@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -38,8 +39,10 @@ public class TodosProjetosAmostra extends ListActivity {
     }
 
 
-    public void abre_todas_amostras(View v){
-        Intent abre_todas_amostras = new Intent(this, TodasAmostras.class);
-        startActivity(abre_todas_amostras);
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Intent it = new Intent(this, TodasAmostras.class);
+        it.putExtra("idProjetoAmostra", this.adapter.getItem(position).getId().toString());
+        startActivity(it);
     }
 }

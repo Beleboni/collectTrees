@@ -13,7 +13,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/nome_projeto"
             android:textColor="#186110"
-            android:id="@+id/txt_nome_projeto"
+            android:id="@+id/tv_nome_amostra"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -35,7 +35,7 @@
             android:text="@string/area_inventariada"
             android:id="@+id/txt_area_inventariada"
             android:textColor="#186110"
-            android:layout_below="@+id/txt_nome_projeto"
+            android:layout_below="@+id/tv_nome_amostra"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/status"
-            android:id="@+id/txt_status"
+            android:id="@+id/tv_status_amostra"
             android:textColor="#186110"
             android:layout_below="@+id/txt_area_inventariada"
             android:layout_alignParentLeft="true"

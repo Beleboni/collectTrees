@@ -105,13 +105,13 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#186110"
                 android:text="@string/painel_projeto_amostras"
                 android:id="@+id/btn_projeto_amostras"
                 android:layout_gravity="center_horizontal"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:textColor="#FFFFFF"
+                android:background="#186110"
                 android:onClick="novo_projeto_amostras"
                 android:layout_weight="1" />
 

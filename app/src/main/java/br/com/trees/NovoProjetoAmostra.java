@@ -33,7 +33,7 @@ public class NovoProjetoAmostra extends Activity {
         projetoAmostrasDAO = new ProjetoAmostrasDAO(this);
 
         //PEGANDO OS VALORES DO TXT
-        txtNome = (EditText)findViewById(R.id.txt_nome_projeto);
+        txtNome = (EditText)findViewById(R.id.tv_nome_amostra);
         txtAreaInventariada = (EditText)findViewById(R.id.txt_area_inventariada);
         txtIndiceConfianca = (EditText)findViewById(R.id.txt_indice_confiabilidade);
     }

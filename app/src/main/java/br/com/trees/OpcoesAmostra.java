@@ -9,18 +9,21 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.com.dao.AmostraDAO;
 import br.com.dao.ArvoreDAO;
-import br.com.dao.ProjetoCensoDAO;
+import br.com.model.Amostra;
 import br.com.model.Arvore;
-import br.com.model.ProjetoCenso;
 
-public class OpcoesCenso extends Activity {
+/**
+ * Created by Fernando on 18/09/2016.
+ */
+public class OpcoesAmostra extends Activity {
 
     AutoCompleteTextView acBuscar;
     List<Arvore> arvores;
     ArrayAdapter<Arvore> adapter;
     ArvoreDAO arvoreDAO;
-    private ProjetoCensoDAO dao;
+    private AmostraDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +31,19 @@ public class OpcoesCenso extends Activity {
         setContentView(R.layout.activity_opcoes_censo);
 
         //CONECTANDO AO BANCO
-        dao = new ProjetoCensoDAO(this);
+        dao = new AmostraDAO(this);
         //PEGANDO O ID PASSADO PELA TELA ANTERIOR
         Bundle extras = getIntent().getExtras();
         //PEGANDO O TEXTVIEW DA TELA
         TextView tvNomeProjeto = (TextView)findViewById(R.id.tv_nome_projeto);
         //CONSULTANDO O ID PASSADO NO BANCO E RETORNANDO O PROJETO ENCONTRADO
-        ProjetoCenso projetoCenso = dao.buscar(extras.getString("idProjetoCenso"));
+        Amostra amostra = dao.buscar(extras.getString("idAmostra"));
         //SETANDO O NOME DO PROJETO ENCONTRADO
-        tvNomeProjeto.setText(projetoCenso.getNome().toString());
+        tvNomeProjeto.setText(amostra.getNome());
         //INFORMANDO O USUARIO DO PROJETO SELECIONADO
-        Toast.makeText(this, projetoCenso.getId().toString(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, projetoCenso.getNome().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, amostra.getId().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, amostra.getNome(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, amostra.getProjetoAmostra().getId().toString(), Toast.LENGTH_SHORT).show();
 
         //AUTO COMPLETE
         arvoreDAO = new ArvoreDAO(this);
@@ -52,5 +56,4 @@ public class OpcoesCenso extends Activity {
 
 
     }
-
 }

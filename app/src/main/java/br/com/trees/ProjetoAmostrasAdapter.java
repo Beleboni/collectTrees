@@ -35,7 +35,7 @@ public class ProjetoAmostrasAdapter extends ArrayAdapter<ProjetoAmostras> {
         TextView tvNome = (TextView) view.findViewById(R.id.tv_nome);
         TextView tvAreaInventariada = (TextView) view.findViewById(R.id.tv_area_inventariada);
         TextView tvIndiceConfianca = (TextView) view.findViewById(R.id.tv_confianca);
-        TextView tvStatus = (TextView) view.findViewById(R.id.tv_status);
+        TextView tvStatus = (TextView) view.findViewById(R.id.tv_status_amostra);
 
         ProjetoAmostras projetoAmostra = projetoAmostras.get(position);
         tvNome.setText(projetoAmostra.getNome());

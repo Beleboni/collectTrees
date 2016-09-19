@@ -14,7 +14,14 @@ public class ProjetoAmostras {
     private String status;
     private Date dataCadastro;
 
-    public ProjetoAmostras() {
+    public ProjetoAmostras() {}
+
+    public ProjetoAmostras(String id) {
+        this.setId(Long.parseLong(id));
+    }
+
+    public ProjetoAmostras(Long id) {
+        this.setId(id);
     }
 
     public Long getId() {

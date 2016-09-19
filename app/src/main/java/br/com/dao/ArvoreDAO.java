@@ -3,6 +3,7 @@ package br.com.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -35,7 +36,8 @@ public class ArvoreDAO {
     }
 
     public boolean hasArvores() {
-        return false;
+        long cnt  = DatabaseUtils.queryNumEntries(db, "arvore");
+        return cnt > 0;
     }
 
     public List<Arvore> listar(){

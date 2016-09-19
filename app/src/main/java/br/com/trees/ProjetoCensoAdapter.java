@@ -34,7 +34,7 @@ public class ProjetoCensoAdapter extends ArrayAdapter<ProjetoCenso> {
 
         TextView tvNome = (TextView) view.findViewById(R.id.tv_nome);
         TextView tvAreaInventariada = (TextView) view.findViewById(R.id.tv_area_inventariada);
-        TextView tvStatus = (TextView) view.findViewById(R.id.tv_status);
+        TextView tvStatus = (TextView) view.findViewById(R.id.tv_status_amostra);
 
         ProjetoCenso projetoCenso = projetoCensos.get(position);
         tvNome.setText(projetoCenso.getNome());

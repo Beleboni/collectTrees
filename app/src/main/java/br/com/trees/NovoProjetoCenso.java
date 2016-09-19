@@ -29,7 +29,7 @@ public class NovoProjetoCenso extends Activity {
         setContentView(R.layout.activity_novo_projeto_censo);
         //PEGANDO OS DADOS DA TELA
         dao = new ProjetoCensoDAO(this);
-        txtNome = (EditText) findViewById(R.id.txt_nome_projeto);
+        txtNome = (EditText) findViewById(R.id.tv_nome_amostra);
         txtAreaInventariada = (EditText) findViewById(R.id.txt_area_inventariada);
     }
 

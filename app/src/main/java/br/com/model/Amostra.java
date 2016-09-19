@@ -8,9 +8,9 @@ import java.util.Date;
 public class Amostra {
 
     private Long id;
-    private ProjetoAmostras idProjeto;
+    private ProjetoAmostras projetoAmostra;
     private String nome;
-    private Float tamanho;
+    private Double tamanho;
     private String status;
     private Date dataCadastro;
 
@@ -25,12 +25,12 @@ public class Amostra {
         this.dataCadastro = dataCadastro;
     }
 
-    public ProjetoAmostras getIdProjeto() {
-        return idProjeto;
+    public ProjetoAmostras getProjetoAmostra() {
+        return projetoAmostra;
     }
 
-    public void setIdProjeto(ProjetoAmostras idProjeto) {
-        this.idProjeto = idProjeto;
+    public void setProjetoAmostra(ProjetoAmostras projetoAmostra) {
+        this.projetoAmostra = projetoAmostra;
     }
 
     public String getNome() {
@@ -41,11 +41,11 @@ public class Amostra {
         this.nome = nome;
     }
 
-    public Float getTamanho() {
+    public Double getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(Float tamanho) {
+    public void setTamanho(Double tamanho) {
         this.tamanho = tamanho;
     }
 

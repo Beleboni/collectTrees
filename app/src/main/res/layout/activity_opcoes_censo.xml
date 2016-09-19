@@ -43,30 +43,19 @@
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="441dp"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/txt_continuar_censo"
-            android:id="@+id/txt_todas_amostras"
-            android:textColor="#186110"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
 
-        <TextView
+            <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/nomeProjeto"
             android:id="@+id/textView4"
             android:textColor="#186110"
-            android:layout_below="@+id/txt_todas_amostras"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -76,7 +65,6 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="nomeProjeto"
                 android:id="@+id/tv_nome_projeto"
-                android:layout_below="@+id/txt_todas_amostras"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
@@ -98,27 +86,100 @@
                 android:text="total"
                 android:id="@+id/txt_cadastradas"
                 android:layout_below="@+id/tv_nome_projeto"
-                android:layout_alignRight="@+id/btn_visualizar"
-                android:layout_alignEnd="@+id/btn_visualizar" />
+                android:layout_alignRight="@+id/tv_nome_projeto"
+                android:layout_alignEnd="@+id/tv_nome_projeto" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_define_arvore"
-                android:id="@+id/btn_define_arvore"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/txt_divisor"
+                android:id="@+id/textView6"
+                android:textColor="#186110"
                 android:layout_below="@+id/textView5"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ac_buscar"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/textView6"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/txt_info"
+                android:id="@+id/txt_definicoes"
+                android:layout_marginBottom="10dp"
+                android:textColor="#186110"
+                android:layout_below="@+id/ac_buscar"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tv_cap"
+                android:id="@+id/tv_cap"
+                android:layout_below="@+id/txt_definicoes"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/txt_cap"
+                android:layout_below="@+id/tv_cap"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:onClick="define_arvore_censo"/>
+                android:layout_alignRight="@+id/ac_buscar"
+                android:layout_alignEnd="@+id/ac_buscar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tv_altura"
+                android:id="@+id/textView9"
+                android:layout_below="@+id/txt_cap"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/txt_altura"
+                android:layout_below="@+id/textView9"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_visualizar"
-                android:id="@+id/btn_visualizar"
-                android:layout_alignTop="@+id/btn_define_arvore"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:text="@string/cadastrar_arvore"
+                android:id="@+id/button2"
+                android:layout_marginTop="10dp"
+                android:textColor="#FFFFFF"
+                android:background="#186110"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_below="@+id/txt_altura"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
         </RelativeLayout>
 
     </LinearLayout>

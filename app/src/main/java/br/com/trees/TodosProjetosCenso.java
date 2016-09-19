@@ -15,6 +15,7 @@ import br.com.model.ProjetoCenso;
  * Created by Fernando on 28/07/2016.
  */
 public class TodosProjetosCenso extends ListActivity {
+
     //PEGANDO OS DADOS
     ProjetoCensoAdapter adapter;
     List<ProjetoCenso> projetoCensos;

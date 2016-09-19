@@ -23,12 +23,13 @@ public class DadosProjetoAmostraDAO {
 
     public void salvar(DadosProjetoAmostra dadosProjetoAmostra){
         ContentValues values = new ContentValues();
-        values.put("idArvore", dadosProjetoAmostra.getIdArvore().toString());
-        values.put("idProjeto", dadosProjetoAmostra.getIdProjeto().toString());
-        values.put("idAmostra", dadosProjetoAmostra.getIdAmostra().toString());
+        values.put("id_arvore", dadosProjetoAmostra.getIdArvore().toString());
+        values.put("id_projeto", dadosProjetoAmostra.getIdProjeto().toString());
+        values.put("id_amostra", dadosProjetoAmostra.getIdAmostra().toString());
         values.put("cap", dadosProjetoAmostra.getCap());
         values.put("altura", dadosProjetoAmostra.getAltura());
 
         db.insert("dados_projeto_amostra", null, values);
     }
+
 }

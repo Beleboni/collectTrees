@@ -44,6 +44,7 @@ public class ProjetoAmostrasDAO {
         if(c.moveToFirst()){
             do {
                 ProjetoAmostras pa = new ProjetoAmostras();
+                pa.setId(c.getLong(c.getColumnIndex("id")));
                 pa.setNome(c.getString(c.getColumnIndex("nome")));
                 pa.setAreaInventariada(c.getDouble(c.getColumnIndex("area_inventariada".toString())));
                 pa.setIndiceConfianca(c.getDouble(c.getColumnIndex("indice_confianca".toString())));
@@ -53,6 +54,21 @@ public class ProjetoAmostrasDAO {
             }while (c.moveToNext());
         }
         c.close();
+        return projetoAmostras;
+    }
+
+    public ProjetoAmostras buscar(String id){
+        String[] colunas = new String[]{"id", "nome", "area_inventariada", "indice_confianca","status"};
+        String[] args = new String[]{ id };
+
+        Cursor c = db.query("projeto_amostra", colunas, "id = ?", args, null, null, null, null);
+
+        c.moveToFirst();
+        ProjetoAmostras projetoAmostras = new ProjetoAmostras();
+        projetoAmostras.setId(c.getLong(c.getColumnIndex("id")));
+        projetoAmostras.setNome(c.getString(c.getColumnIndex("nome")));
+        projetoAmostras.setAreaInventariada(c.getDouble(c.getColumnIndex("area_inventariada".toString())));
+        projetoAmostras.setStatus(c.getString(c.getColumnIndex("status")));
         return projetoAmostras;
     }
 

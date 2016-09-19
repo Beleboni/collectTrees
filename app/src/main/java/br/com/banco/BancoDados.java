@@ -16,9 +16,9 @@ public class BancoDados {
 	private static final String[] SCRIPT_DATABASE_CREATE = new String[] {
             "create table if not exists projeto_censo(id integer primary key, nome text, area_inventariada double, data_cadastro date, status text);",
 			"create table if not exists projeto_amostra(id integer primary key, nome text, area_inventariada double, data_cadastro date, indice_confianca double, status text);",
-			"create table if not exists amostras(id integer primary key, id_projeto, nome text, tamanho double, foreign key(id_projeto) references projeto_amostra(id));",
+			"create table if not exists amostras(id integer primary key, id_projeto integer, nome text, tamanho double, data_cadastro date, status text, foreign key(id_projeto) references projeto_amostra(id));",
 			"create table if not exists arvore(id integer primary key, nome_comum text, nome_cientifico text, familia text, fator_forma double);",
-			"create table if not exists dados_projeto_amostra(id primary key, id_arvore integer, id_projeto integer, cap double, altura double, foreign key(id_projeto) references projeto_amostra(id), foreign key(id_arvore) references arvore(id));",
+			"create table if not exists dados_projeto_amostra(id primary key, id_arvore integer, id_projeto integer, id_amostra integer, cap double, altura double, foreign key(id_projeto) references projeto_amostra(id), foreign key(id_arvore) references arvore(id), foreign key(id_amostra) references amostra(id));",
 			"create table if not exists dados_projeto_censo(id integer primary key, id_projeto integer, id_arvore integer, cap double, altura double, foreign key(id_projeto) references projeto_censo(id), foreign key(id_arvore) references arvore(id));"
 	};
 

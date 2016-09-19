@@ -8,8 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="1"
-        >
+        android:weightSum="1">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
@@ -46,11 +45,29 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/txt_todas_amostras"
-            android:id="@+id/txt_todas_amostras"
+            android:id="@+id/textView"
             android:textColor="#186110"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="20dp"
             />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/nomeProjeto"
+            android:id="@+id/textView7"
+            android:textColor="#186110"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="nomeProjeto"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/txt_nome_projeto" />
 
         <ListView
             android:layout_width="match_parent"
