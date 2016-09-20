@@ -2,8 +2,11 @@ package br.com.trees;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +53,16 @@ public class OpcoesCenso extends Activity {
         acBuscar.setAdapter(adapter);
         acBuscar.setThreshold(1);
 
+        acBuscar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //PEGANDO AS INFORMAÇÕES DA ARVORE ESCOLHIDA PELO CLIENTE
+                Arvore arvore = (Arvore)((ListView) parent).getAdapter().getItem(position);
+                Toast.makeText(OpcoesCenso.this, arvore.getId().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OpcoesCenso.this, arvore.getNomeCientifico(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
