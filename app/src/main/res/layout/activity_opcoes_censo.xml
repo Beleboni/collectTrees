@@ -178,7 +178,9 @@
                 android:paddingRight="20dp"
                 android:layout_below="@+id/txt_altura"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:onClick="cadastra_dado_censo"
+                />
 
         </RelativeLayout>
 

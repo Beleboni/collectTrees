@@ -8,9 +8,10 @@ import java.util.Date;
 public class DadosProjetoCenso {
 
     private Long id;
-    private ProjetoCenso idProjeto;
-    private Float cap;
-    private Float dap;
+    private ProjetoCenso projetoCenso;
+    private Arvore arvore;
+    private Double cap;
+    private Double altura;
     private Date dataCadastro;
 
     public DadosProjetoCenso() {
@@ -24,28 +25,36 @@ public class DadosProjetoCenso {
         this.id = id;
     }
 
-    public ProjetoCenso getIdProjeto() {
-        return idProjeto;
+    public ProjetoCenso getProjetoCenso() {
+        return projetoCenso;
     }
 
-    public void setIdProjeto(ProjetoCenso idProjeto) {
-        this.idProjeto = idProjeto;
+    public void setProjetoCenso(ProjetoCenso projetoCenso) {
+        this.projetoCenso = projetoCenso;
     }
 
-    public Float getCap() {
+    public Arvore getArvore() {
+        return arvore;
+    }
+
+    public void setArvore(Arvore arvore) {
+        this.arvore = arvore;
+    }
+
+    public Double getCap() {
         return cap;
     }
 
-    public void setCap(Float cap) {
+    public void setCap(Double cap) {
         this.cap = cap;
     }
 
-    public Float getDap() {
-        return dap;
+    public Double getAltura() {
+        return altura;
     }
 
-    public void setDap(Float dap) {
-        this.dap = dap;
+    public void setAltura(Double altura) {
+        this.altura = altura;
     }
 
     public Date getDataCadastro() {
