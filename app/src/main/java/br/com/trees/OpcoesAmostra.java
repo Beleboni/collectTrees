@@ -1,34 +1,54 @@
 package br.com.trees;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.List;
 
 import br.com.dao.AmostraDAO;
 import br.com.dao.ArvoreDAO;
+import br.com.dao.DadosProjetoAmostraDAO;
 import br.com.model.Amostra;
 import br.com.model.Arvore;
+import br.com.model.DadosProjetoAmostra;
 
 /**
  * Created by Fernando on 18/09/2016.
  */
 public class OpcoesAmostra extends Activity {
 
+    //CRIANDO VARIAVEIS
+    EditText txtCap, txtAltura;
+
     AutoCompleteTextView acBuscar;
     List<Arvore> arvores;
     ArrayAdapter<Arvore> adapter;
     ArvoreDAO arvoreDAO;
+    Amostra amostra;
     private AmostraDAO dao;
+    private Arvore arvore;
+    private DadosProjetoAmostraDAO dadosProjetoAmostraDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opcoes_censo);
+        setContentView(R.layout.activity_opcoes_amostra);
+
+        //INICIANDO OS TEXT FIELDS DA TELA
+        txtAltura = (EditText) findViewById(R.id.txt_altura);
+        txtCap = (EditText)findViewById(R.id.txt_cap);
+
+        dadosProjetoAmostraDAO = new DadosProjetoAmostraDAO(this);
 
         //CONECTANDO AO BANCO
         dao = new AmostraDAO(this);
@@ -37,13 +57,15 @@ public class OpcoesAmostra extends Activity {
         //PEGANDO O TEXTVIEW DA TELA
         TextView tvNomeProjeto = (TextView)findViewById(R.id.tv_nome_projeto);
         //CONSULTANDO O ID PASSADO NO BANCO E RETORNANDO O PROJETO ENCONTRADO
-        Amostra amostra = dao.buscar(extras.getString("idAmostra"));
+        amostra = dao.buscar(extras.getString("idAmostra"));
         //SETANDO O NOME DO PROJETO ENCONTRADO
         tvNomeProjeto.setText(amostra.getNome());
+
         //INFORMANDO O USUARIO DO PROJETO SELECIONADO
-        Toast.makeText(this, amostra.getId().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, amostra.getId().toString(), Toast.LENGTH_SHORT).show();
         Toast.makeText(this, amostra.getNome(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, amostra.getProjetoAmostra().getId().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, amostra.getProjetoAmostra().getId().toString(), Toast.LENGTH_SHORT).show();
+
 
         //AUTO COMPLETE
         arvoreDAO = new ArvoreDAO(this);
@@ -54,6 +76,47 @@ public class OpcoesAmostra extends Activity {
         acBuscar.setAdapter(adapter);
         acBuscar.setThreshold(1);
 
+        acBuscar.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //PEGANDO AS INFORMAÇÕES DA ARVORE ESCOLHIDA PELO CLIENTE
+                arvore = (Arvore)((ListView) parent).getAdapter().getItem(position);
+                //Toast.makeText(OpcoesCenso.this, arvore.getId().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OpcoesAmostra.this, arvore.getNomeComum(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
+
+    public void cadastra_dado_amostra(View v){
+        //GERANDO UM PROJETO
+        DadosProjetoAmostra dadosProjetoAmostra = new DadosProjetoAmostra();
+        dadosProjetoAmostra.setArvore(this.arvore);
+        dadosProjetoAmostra.setAmostra(amostra);
+        dadosProjetoAmostra.setProjetoAmostras(amostra.getProjetoAmostra());
+        dadosProjetoAmostra.setAltura(Double.parseDouble(txtAltura.getText().toString()));
+        dadosProjetoAmostra.setCap(Double.parseDouble(txtCap.getText().toString()));
+        dadosProjetoAmostra.setDataCadastro(new Date());
+
+        //SALVANDO O OBJETO
+        dadosProjetoAmostraDAO.salvar(dadosProjetoAmostra);
+
+        //LIMPANDO CAMPOS
+        txtAltura.setText("");
+        txtCap.setText("");
+
+        //MENSAGEM DE SUCESSO
+        Toast.makeText(this, "Árvore cadastrada com sucesso", Toast.LENGTH_LONG).show();
+    }
+
+
+    public void ver_coleta_amostra(View v){
+        Intent abre_coleta_amostra = new Intent(this, VerColetaAmostra.class);
+        //abre_coleta_amostra.putExtra("idAmostra", )
+    }
+
+
+
+
+
 }

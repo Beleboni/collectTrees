@@ -1,6 +1,7 @@
 package br.com.trees;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -104,5 +105,12 @@ public class OpcoesCenso extends Activity {
         Toast.makeText(this, "Árvore cadastrada com sucesso", Toast.LENGTH_LONG).show();
 
     }
+
+    public void ver_coleta(View v){
+        Intent abre_coleta = new Intent(this, VerColetaCenso.class);
+        abre_coleta.putExtra("idProjetoCenso", projetoCenso.getId());
+        startActivity(abre_coleta);
+    }
+
 
 }

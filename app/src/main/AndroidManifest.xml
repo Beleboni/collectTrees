@@ -24,6 +24,7 @@
         <activity android:name=".TodasAmostras" />
         <activity android:name=".OpcoesCenso"/>
         <activity android:name=".OpcoesAmostra"/>
+        <activity android:name=".VerColetaCenso"/>
     </application>
 
 </manifest>

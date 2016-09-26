@@ -24,7 +24,7 @@
     <string name="nome_comum">Nome comum:</string>
     <string name="fator_forma">Fator forma:</string>
     <string name="pesquisar">Pesquisar</string>
-    <string name="cadastrar_arvore">Cadastrar árvore</string>
+    <string name="cadastrar_arvore">cadastrar</string>
     <string name="cap">Cap:</string>
     <string name="dap">Dap:</string>
     <string name="cad_arvore">Cadastrar árvore</string>
@@ -43,4 +43,6 @@
     <string name="txt_info">Definições</string>
     <string name="tv_cap">Cap:</string>
     <string name="tv_altura">Altura:</string>
+    <string name="txt_arv_coletada">Árvores coletadas:</string>
+    <string name="btn_ver_coleta">Ver coleta</string>
 </resources>

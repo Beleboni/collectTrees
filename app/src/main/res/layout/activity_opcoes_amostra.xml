@@ -50,14 +50,14 @@
             android:paddingTop="@dimen/activity_vertical_margin">
 
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/nomeProjeto"
-            android:id="@+id/textView4"
-            android:textColor="#186110"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/nomeProjeto"
+                android:id="@+id/textView4"
+                android:textColor="#186110"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -179,14 +179,14 @@
                 android:layout_below="@+id/txt_altura"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:onClick="cadastra_dado_censo"
+                android:onClick="cadastra_dado_amostra"
                 />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_ver_coleta"
-                android:id="@+id/button2"
+                android:id="@+id/btn_ver_coleta"
                 android:textColor="#FFFFFF"
                 android:background="#186110"
                 android:paddingLeft="20dp"

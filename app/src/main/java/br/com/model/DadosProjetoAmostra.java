@@ -8,11 +8,11 @@ import java.util.Date;
 public class DadosProjetoAmostra {
 
     private Long id;
-    private Amostra idAmostra;
-    private ProjetoAmostras idProjeto;
-    private Arvore idArvore;
-    private Float cap;
-    private Float altura;
+    private Amostra amostra;
+    private ProjetoAmostras projetoAmostras;
+    private Arvore arvore;
+    private Double cap;
+    private Double altura;
     private Date dataCadastro;
 
     public DadosProjetoAmostra() {
@@ -26,43 +26,43 @@ public class DadosProjetoAmostra {
         this.id = id;
     }
 
-    public Amostra getIdAmostra() {
-        return idAmostra;
+    public Amostra getAmostra() {
+        return amostra;
     }
 
-    public void setIdAmostra(Amostra idAmostra) {
-        this.idAmostra = idAmostra;
+    public void setAmostra(Amostra amostra) {
+        this.amostra = amostra;
     }
 
-    public ProjetoAmostras getIdProjeto() {
-        return idProjeto;
+    public ProjetoAmostras getProjetoAmostras() {
+        return projetoAmostras;
     }
 
-    public void setIdProjeto(ProjetoAmostras idProjeto) {
-        this.idProjeto = idProjeto;
+    public void setProjetoAmostras(ProjetoAmostras projetoAmostras) {
+        this.projetoAmostras = projetoAmostras;
     }
 
-    public Arvore getIdArvore() {
-        return idArvore;
+    public Arvore getArvore() {
+        return arvore;
     }
 
-    public void setIdArvore(Arvore idArvore) {
-        this.idArvore = idArvore;
+    public void setArvore(Arvore arvore) {
+        this.arvore = arvore;
     }
 
-    public Float getCap() {
+    public Double getCap() {
         return cap;
     }
 
-    public void setCap(Float cap) {
+    public void setCap(Double cap) {
         this.cap = cap;
     }
 
-    public Float getAltura() {
+    public Double getAltura() {
         return altura;
     }
 
-    public void setAltura(Float dap) {
+    public void setAltura(Double altura) {
         this.altura = altura;
     }
 
