@@ -74,6 +74,7 @@ public class ProjetoCensoDAO {
     }
 
     public ProjetoCenso buscar(Long id){
+
         return this.buscar(id.toString());
     }
 

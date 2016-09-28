@@ -191,7 +191,7 @@
                 android:background="#186110"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:onClick="ver_coleta"
+                android:onClick="ver_coleta_amostra"
                 android:layout_alignBottom="@+id/btn_cad_arvore"
                 android:layout_alignRight="@+id/txt_altura"
                 android:layout_alignEnd="@+id/txt_altura" />

@@ -1,10 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="false"
-    >
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -69,7 +63,10 @@
             android:layout_marginLeft="10dp"
             android:id="@+id/txt_nome_projeto_censo" />
 
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:id="@android:id/list" />
+
 
     </LinearLayout>
-
-</ScrollView>

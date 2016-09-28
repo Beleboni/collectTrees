@@ -37,7 +37,7 @@ public class ColetaCensoAdapter extends ArrayAdapter<DadosProjetoCenso> {
         TextView tvAltura = (TextView)view.findViewById(R.id.tv_altura_adapter);
 
         DadosProjetoCenso dadosProjetoCenso = dadosProjetoCensos.get(position);
-        tvNomeArvore.setText(dadosProjetoCenso.getArvore().toString());
+        tvNomeArvore.setText(dadosProjetoCenso.getArvore().getNomeComum().toString());
         tvCap.setText(Double.toString(dadosProjetoCenso.getCap()));
         tvAltura.setText(Double.toString(dadosProjetoCenso.getAltura()));
 

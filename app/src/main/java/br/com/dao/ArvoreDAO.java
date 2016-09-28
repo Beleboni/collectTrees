@@ -35,6 +35,29 @@ public class ArvoreDAO {
         db.insert("arvore", null, values);
     }
 
+    public Arvore buscar(String id) {
+        String[] colunas = new String[] {"id", "nome_comum", "nome_cientifico", "familia", "fator_forma"};
+        String[] args = new String[]{id};
+        Cursor c = db.query("arvore", colunas, "id = ?", args, null, null, null);
+
+        Arvore arvore = null;
+
+        if (c.moveToFirst()) {
+            arvore = new Arvore();
+            arvore.setId(c.getLong(c.getColumnIndex("id")));
+            arvore.setNomeComum(c.getString(c.getColumnIndex("nome_comum")));
+            arvore.setNomeCientifico(c.getString(c.getColumnIndex("nome_cientifico")));
+            arvore.setFamilia(c.getString(c.getColumnIndex("familia")));
+            arvore.setFatorForma(c.getDouble(c.getColumnIndex("fator_forma")));
+        }
+
+        return arvore;
+    }
+
+    public Arvore buscar(Long id) {
+        return this.buscar(id.toString());
+    }
+
     public boolean hasArvores() {
         long cnt  = DatabaseUtils.queryNumEntries(db, "arvore");
         return cnt > 0;

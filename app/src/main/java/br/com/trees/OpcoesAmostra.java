@@ -112,7 +112,8 @@ public class OpcoesAmostra extends Activity {
 
     public void ver_coleta_amostra(View v){
         Intent abre_coleta_amostra = new Intent(this, VerColetaAmostra.class);
-        //abre_coleta_amostra.putExtra("idAmostra", )
+        abre_coleta_amostra.putExtra("idAmostra", amostra.getId());
+        startActivity(abre_coleta_amostra);
     }
 
 
