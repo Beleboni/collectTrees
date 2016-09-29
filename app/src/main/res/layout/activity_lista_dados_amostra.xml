@@ -23,18 +23,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="nome_comum"
-        android:id="@+id/tv_nome_comum_adapter"
-        android:layout_above="@+id/textView10"
-        android:layout_alignRight="@+id/tv_cap_adapter"
-        android:layout_alignEnd="@+id/tv_cap_adapter" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/cap"
-        android:textColor="#186110"
-        android:id="@+id/textView10"
+        android:id="@+id/tv_nome_comum_adapter_amostra"
         android:layout_below="@+id/textView8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -43,8 +32,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/cap"
+        android:textColor="#186110"
+        android:id="@+id/textView10"
+        android:layout_below="@+id/tv_nome_comum_adapter_amostra"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="cap"
-        android:id="@+id/tv_cap_adapter"
+        android:id="@+id/tv_cap_adapter_amostra"
         android:layout_alignBaseline="@+id/textView10"
         android:layout_alignBottom="@+id/textView10"
         android:layout_alignParentRight="true"
@@ -66,10 +66,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="altura"
-        android:id="@+id/tv_altura_adapter"
-        android:layout_below="@+id/tv_cap_adapter"
-        android:layout_alignRight="@+id/tv_cap_adapter"
-        android:layout_alignEnd="@+id/tv_cap_adapter" />
+        android:id="@+id/tv_altura_adapter_amostra"
+        android:layout_alignTop="@+id/textView11"
+        android:layout_alignRight="@+id/tv_cap_adapter_amostra"
+        android:layout_alignEnd="@+id/tv_cap_adapter_amostra" />
 
 
 </RelativeLayout>

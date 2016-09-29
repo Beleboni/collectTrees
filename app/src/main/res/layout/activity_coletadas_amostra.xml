@@ -61,7 +61,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="nomeProjeto"
             android:layout_marginLeft="10dp"
-            android:id="@+id/txt_nome_projeto_censo" />
+            android:id="@+id/txt_nome_amostra" />
 
         <ListView
             android:layout_width="match_parent"
