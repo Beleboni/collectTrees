@@ -1,6 +1,7 @@
 package br.com.trees;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +13,22 @@ import br.com.builder.ArvoreBuilder;
  */
 public class PainelActivity extends Activity{
 
+    ProgressDialog load;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ArvoreBuilder.build(this);
+        //ESTE METODO É RESPONSAVEL POR VERIFICAR SE EXISTEM ARVORES CADASTRADAS NO SISTEMA
+        //ELE RETORNA UMA MENSAGEM AO USUARIO
+        load = ProgressDialog.show(this, "Por favor, aguarde ...", "Carregando informações.");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArvoreBuilder.build(PainelActivity.this);
+                load.dismiss();
+            }
+        }).start();
 
         setContentView(R.layout.activity_painel);
     }

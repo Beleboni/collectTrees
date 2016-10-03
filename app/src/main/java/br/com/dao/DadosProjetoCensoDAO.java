@@ -67,4 +67,20 @@ public class DadosProjetoCensoDAO {
 
         return dpcs;
     }
+
+    public int countArvoresPorProjeto(String idProjeto) {
+        String query = "select count(*) as contador from dados_projeto_censo where id_projeto = ?";
+        Cursor cursor = db.rawQuery(query, new String[] { idProjeto });
+
+        int count = 0;
+
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(cursor.getColumnIndex("contador"));
+        }
+
+        cursor.close();
+
+        return count;
+    }
+
 }

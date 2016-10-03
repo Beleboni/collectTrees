@@ -45,4 +45,5 @@
     <string name="tv_altura">Altura:</string>
     <string name="txt_arv_coletada">Árvores coletadas:</string>
     <string name="btn_ver_coleta">Ver coleta</string>
+    <string name="field_empty">O campo está vazio.</string>
 </resources>

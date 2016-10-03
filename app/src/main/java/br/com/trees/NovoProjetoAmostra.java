@@ -11,6 +11,7 @@ import java.util.Date;
 import br.com.dao.ProjetoAmostrasDAO;
 import br.com.model.ProjetoAmostras;
 import br.com.status.Status;
+import br.com.validator.Validator;
 
 /**
  * Created by Fernando on 28/07/2016.
@@ -23,6 +24,7 @@ public class NovoProjetoAmostra extends Activity {
 
     //ACESSO AO BANCO DE DADOS
     ProjetoAmostrasDAO projetoAmostrasDAO;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +43,28 @@ public class NovoProjetoAmostra extends Activity {
     //METODO SALVAR
     public void salvarProjeto(View v){
 
-        //POPULANDO O OBJETO
-        ProjetoAmostras projetoAmostras = new ProjetoAmostras();
-        projetoAmostras.setNome(txtNome.getText().toString());
-        projetoAmostras.setAreaInventariada(Double.parseDouble(txtAreaInventariada.getText().toString()));
-        projetoAmostras.setIndiceConfianca(Double.parseDouble(txtIndiceConfianca.getText().toString()));
-        projetoAmostras.setDataCadastro(new Date());
-        projetoAmostras.setStatus(Status.EM_PROGRESSO.toString());
+        //VERIFICANDO SE OS CAMPOS ESTÃO VAZIOS
+        if(Validator.validateEmptyField(this, txtNome, txtAreaInventariada, txtIndiceConfianca)) {
 
-        //SALVANDO O OBJETO
-        projetoAmostrasDAO.salvar(projetoAmostras);
+            //POPULANDO O OBJETO
+            ProjetoAmostras projetoAmostras = new ProjetoAmostras();
+            projetoAmostras.setNome(txtNome.getText().toString());
+            projetoAmostras.setAreaInventariada(Double.parseDouble(txtAreaInventariada.getText().toString()));
+            projetoAmostras.setIndiceConfianca(Double.parseDouble(txtIndiceConfianca.getText().toString()));
+            projetoAmostras.setDataCadastro(new Date());
+            projetoAmostras.setStatus(Status.EM_PROGRESSO.toString());
 
-        //LIMPANDO OS CAMPOS
-        txtNome.setText("");
-        txtIndiceConfianca.setText("");
-        txtAreaInventariada.setText("");
+            //SALVANDO O OBJETO
+            projetoAmostrasDAO.salvar(projetoAmostras);
 
-        //AVISO
-        Toast.makeText(this, "Projeto criando com sucesso !!!", Toast.LENGTH_LONG).show();
+            //LIMPANDO OS CAMPOS
+            txtNome.setText("");
+            txtIndiceConfianca.setText("");
+            txtAreaInventariada.setText("");
 
+            //AVISO
+            Toast.makeText(this, "Projeto criando com sucesso !!!", Toast.LENGTH_LONG).show();
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package br.com.trees;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ import br.com.dao.DadosProjetoAmostraDAO;
 import br.com.model.Amostra;
 import br.com.model.Arvore;
 import br.com.model.DadosProjetoAmostra;
+import br.com.validator.Validator;
 
 /**
  * Created by Fernando on 18/09/2016.
@@ -35,6 +37,10 @@ public class OpcoesAmostra extends Activity {
     ArrayAdapter<Arvore> adapter;
     ArvoreDAO arvoreDAO;
     Amostra amostra;
+
+    //O RESOURCES SERVE PARA PASSAR OS CAMPOS PARA A VERIFICAÇÃO SE ESTÃO VAZIOS
+    Resources resources;
+
     private AmostraDAO dao;
     private Arvore arvore;
     private DadosProjetoAmostraDAO dadosProjetoAmostraDAO;
@@ -89,24 +95,28 @@ public class OpcoesAmostra extends Activity {
     }
 
     public void cadastra_dado_amostra(View v){
-        //GERANDO UM PROJETO
-        DadosProjetoAmostra dadosProjetoAmostra = new DadosProjetoAmostra();
-        dadosProjetoAmostra.setArvore(this.arvore);
-        dadosProjetoAmostra.setAmostra(amostra);
-        dadosProjetoAmostra.setProjetoAmostras(amostra.getProjetoAmostra());
-        dadosProjetoAmostra.setAltura(Double.parseDouble(txtAltura.getText().toString()));
-        dadosProjetoAmostra.setCap(Double.parseDouble(txtCap.getText().toString()));
-        dadosProjetoAmostra.setDataCadastro(new Date());
 
-        //SALVANDO O OBJETO
-        dadosProjetoAmostraDAO.salvar(dadosProjetoAmostra);
+        //VERIFICANDO SE OS CAMPOS ESTÃO VAZIOS
+        if(Validator.validateEmptyField(this, txtAltura, txtCap, acBuscar)) {
+            //GERANDO UM PROJETO
+            DadosProjetoAmostra dadosProjetoAmostra = new DadosProjetoAmostra();
+            dadosProjetoAmostra.setArvore(this.arvore);
+            dadosProjetoAmostra.setAmostra(amostra);
+            dadosProjetoAmostra.setProjetoAmostras(amostra.getProjetoAmostra());
+            dadosProjetoAmostra.setAltura(Double.parseDouble(txtAltura.getText().toString()));
+            dadosProjetoAmostra.setCap(Double.parseDouble(txtCap.getText().toString()));
+            dadosProjetoAmostra.setDataCadastro(new Date());
 
-        //LIMPANDO CAMPOS
-        txtAltura.setText("");
-        txtCap.setText("");
+            //SALVANDO O OBJETO
+            dadosProjetoAmostraDAO.salvar(dadosProjetoAmostra);
 
-        //MENSAGEM DE SUCESSO
-        Toast.makeText(this, "Árvore cadastrada com sucesso", Toast.LENGTH_LONG).show();
+            //LIMPANDO CAMPOS
+            txtAltura.setText("");
+            txtCap.setText("");
+
+            //MENSAGEM DE SUCESSO
+            Toast.makeText(this, "Árvore cadastrada com sucesso", Toast.LENGTH_LONG).show();
+        }
     }
 
 

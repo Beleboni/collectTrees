@@ -11,6 +11,7 @@ import java.util.Date;
 import br.com.dao.ProjetoCensoDAO;
 import br.com.model.ProjetoCenso;
 import br.com.status.Status;
+import br.com.validator.Validator;
 
 /**
  * Created by Fernando on 22/04/2016.
@@ -34,21 +35,24 @@ public class NovoProjetoCenso extends Activity {
     }
 
     public void inserir(View v){
-        //GERANDO UM PROJETO CENSO
-        ProjetoCenso projetoCenso = new ProjetoCenso();
-        projetoCenso.setNome(txtNome.getText().toString());
-        projetoCenso.setAreaInventariada(Double.parseDouble(txtAreaInventariada.getText().toString()));
-        projetoCenso.setDataCadastro(new Date());
-        projetoCenso.setStatus(Status.EM_PROGRESSO.toString());
+        //VERIFICANDO SE OS CAMPOS ESTÃO VAZIOS
+        if (Validator.validateEmptyField(this, txtNome, txtAreaInventariada)) {
+            //GERANDO UM PROJETO CENSO
+            ProjetoCenso projetoCenso = new ProjetoCenso();
+            projetoCenso.setNome(txtNome.getText().toString());
+            projetoCenso.setAreaInventariada(Double.parseDouble(txtAreaInventariada.getText().toString()));
+            projetoCenso.setDataCadastro(new Date());
+            projetoCenso.setStatus(Status.EM_PROGRESSO.toString());
 
-        //SALVANDO O PROJETO CENSO
-        dao.salvar(projetoCenso);
-        //LIMPANDO OS DADOS DOS CAMPOS
-        txtNome.setText("");
-        txtAreaInventariada.setText("");
+            //SALVANDO O PROJETO CENSO
+            dao.salvar(projetoCenso);
+            //LIMPANDO OS DADOS DOS CAMPOS
+            txtNome.setText("");
+            txtAreaInventariada.setText("");
 
-        //MENSAGEM DE SUCESSO
-        Toast.makeText(this, "Projeto criado com sucesso", Toast.LENGTH_LONG).show();
+            //MENSAGEM DE SUCESSO
+            Toast.makeText(this, "Projeto criado com sucesso", Toast.LENGTH_LONG).show();
+        }
     }
 
 }

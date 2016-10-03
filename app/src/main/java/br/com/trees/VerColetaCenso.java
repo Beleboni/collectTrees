@@ -39,7 +39,7 @@ public class VerColetaCenso extends ListActivity {
         ProjetoCenso projetoCenso = projetoCensoDAO.buscar(s);
         tvNomeProjeto.setText(projetoCenso.getNome());
         Toast.makeText(this, projetoCenso.getNome(), Toast.LENGTH_LONG).show();
-        Toast.makeText(this, extras.getString("idProjetoCenso"), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, extras.getString("idProjetoCenso"), Toast.LENGTH_LONG).show();
 
         dadosProjetoCensoList = dao.listarPorProjeto(s.toString());
         //ADAPTER
