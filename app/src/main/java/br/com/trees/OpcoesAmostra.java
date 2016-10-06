@@ -67,6 +67,11 @@ public class OpcoesAmostra extends Activity {
         //SETANDO O NOME DO PROJETO ENCONTRADO
         tvNomeProjeto.setText(amostra.getNome());
 
+        //CONTADOR DE ARVORES
+        int count = dadosProjetoAmostraDAO.countArvoresPorAmostra(amostra.getId().toString());
+        TextView tvTotal = (TextView)findViewById(R.id.txt_cadastradas_amostra);
+        tvTotal.setText(Integer.toString(count));
+
         //INFORMANDO O USUARIO DO PROJETO SELECIONADO
         //Toast.makeText(this, amostra.getId().toString(), Toast.LENGTH_SHORT).show();
         Toast.makeText(this, amostra.getNome(), Toast.LENGTH_SHORT).show();
@@ -97,7 +102,7 @@ public class OpcoesAmostra extends Activity {
     public void cadastra_dado_amostra(View v){
 
         //VERIFICANDO SE OS CAMPOS ESTÃO VAZIOS
-        if(Validator.validateEmptyField(this, txtAltura, txtCap, acBuscar)) {
+        if(Validator.validateEmptyField(this, acBuscar, txtAltura, txtCap)) {
             //GERANDO UM PROJETO
             DadosProjetoAmostra dadosProjetoAmostra = new DadosProjetoAmostra();
             dadosProjetoAmostra.setArvore(this.arvore);
@@ -116,6 +121,14 @@ public class OpcoesAmostra extends Activity {
 
             //MENSAGEM DE SUCESSO
             Toast.makeText(this, "Árvore cadastrada com sucesso", Toast.LENGTH_LONG).show();
+
+            //PARA QUE O COUNT CONTADOR DE ARVORES FUNCIONE PRECISA MATAR A ACTIVITY
+            finish();
+            //E INICIA-LA NOVAMENTE
+            Intent intent = this.getIntent();
+            intent.putExtra("idAmostra", this.amostra.getId().toString());
+            startActivity(intent);
+
         }
     }
 

@@ -116,8 +116,9 @@ public class OpcoesCenso extends Activity {
             //MENSAGEM DE SUCESSO
             Toast.makeText(this, "Árvore cadastrada com sucesso", Toast.LENGTH_LONG).show();
 
+            //PARA QUE O COUNT CONTADOR DE ARVORES FUNCIONE PRECISA MATAR A ACTIVITY
             finish();
-
+            //E INICIA-LA NOVAMENTE
             Intent intent = this.getIntent();
             intent.putExtra("idProjetoCenso", this.projetoCenso.getId().toString());
             startActivity(intent);

@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="total"
-                android:id="@+id/txt_cadastradas"
+                android:id="@+id/txt_cadastradas_amostra"
                 android:layout_below="@+id/tv_nome_projeto"
                 android:layout_alignRight="@+id/tv_nome_projeto"
                 android:layout_alignEnd="@+id/tv_nome_projeto" />
@@ -135,7 +135,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/txt_cap"
                 android:layout_below="@+id/tv_cap"
@@ -157,7 +157,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/txt_altura"
                 android:layout_below="@+id/textView9"

@@ -1,6 +1,7 @@
 package br.com.trees;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -52,6 +53,14 @@ public class NovoProjetoCenso extends Activity {
 
             //MENSAGEM DE SUCESSO
             Toast.makeText(this, "Projeto criado com sucesso", Toast.LENGTH_LONG).show();
+
+            //ENCERANDO A ACTIVITY
+            finish();
+
+            //REDIRECIONANDO O USUARIO PARA A TELA TODOS OS PROJETOS CENSO
+            Intent it = new Intent(this, TodosProjetosCenso.class);
+            startActivity(it);
+
         }
     }
 
