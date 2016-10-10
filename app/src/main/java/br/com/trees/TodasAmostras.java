@@ -3,9 +3,11 @@ package br.com.trees;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import br.com.dao.AmostraDAO;
 import br.com.dao.ProjetoAmostrasDAO;
 import br.com.model.Amostra;
 import br.com.model.ProjetoAmostras;
+import br.com.status.Status;
 
 public class TodasAmostras extends ListActivity{
 
@@ -52,11 +55,30 @@ public class TodasAmostras extends ListActivity{
         adapter = new AmostrasAdapter(this,R.layout.activity_lista_amostras, amostras);
 
         setListAdapter(adapter);
+        //CRIANDO O MENU
+        registerForContextMenu(this.getListView());
 
 
         //INFORMANDO O NOME DO PROJETO ENCONTRADO
         //Toast.makeText(this, projetoAmostras.getId().toString(), Toast.LENGTH_SHORT).show();
         Toast.makeText(this, projetoAmostras.getNome().toString(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    //ESTE RECURSO SERVE PARA VERIFICAR O STATUS DO PROJETO
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        //VERIFICANDO O STATUS DO AMOSTRA
+        Amostra amostra = this.amostras.get(info.position);
+        menu.setHeaderTitle(amostra.getNome());
+        //DEVOLVENDO A MENSAGE AO USUARIO
+        if(amostra.getStatus().equals("CONCLUIDO")){
+            menu.add("Marcar como em progresso");
+        }else if(amostra.getStatus().equals("EM_PROGRESSO")){
+            menu.add("Marcar como concluído");
+        }
+
 
     }
 
@@ -67,6 +89,32 @@ public class TodasAmostras extends ListActivity{
         super.onCreateOptionsMenu(menu);
         menu.add(0, MENU_NOVA_AMOSTRA, 0, "Criar nova amostra");
         return true;
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        this.doActionMenuItem(item.getItemId(), this.amostras.get(info.position));
+        return true;
+    }
+
+    public void doActionMenuItem(int id, Amostra amostra){
+        switch (id){
+            case 0: {
+                if(amostra.getStatus().equals("CONCLUIDO")){
+                    amostra.setStatus(Status.EM_PROGRESSO.toString());
+                }else if(amostra.getStatus().equals("EM_PROGRESSO")){
+                    amostra.setStatus(Status.CONCLUIDO.toString());
+                }
+
+                this.amostraDAO.alterar(amostra);
+                finish();
+                startActivity(this.getIntent());
+                Toast.makeText(this, "Projeto " + amostra.getNome() + " alterado com sucesso !",
+                        Toast.LENGTH_LONG).show();
+                break;
+            }
+        }
     }
 
     //PEGANDO AS AÇÕES DO MENU
@@ -83,11 +131,21 @@ public class TodasAmostras extends ListActivity{
     }
 
     //PASSANDO O ID DA AMOSTRA PARA A OUTRA PAGINA
-
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        Intent it = new Intent(this, OpcoesAmostra.class);
-        it.putExtra("idAmostra", this.adapter.getItem(position).getId().toString());
-        startActivity(it);
+        Amostra amostra = this.adapter.getItem(position);
+
+        //VERIFICANDO O STATUS DO PROJETO
+        //SE ELE ESTIVER CONCLUIDO O SISTEMA CHAMA A ACTIVITY VER COLETA
+        if(amostra.getStatus().equals("CONCLUIDO")) {
+            Intent it = new Intent(this, VerColetaAmostra.class);
+            it.putExtra("idAmostra", amostra.getId().toString());
+            startActivity(it);
+        }else{
+            //SE ELE ESTIVER EM PROGRESSO O SISTEMA CHAMA A ACTIVITY OPCOES AMOSTRA
+            Intent it = new Intent(this, OpcoesAmostra.class);
+            it.putExtra("idAmostra", amostra.getId().toString());
+            startActivity(it);
+        }
     }
 }

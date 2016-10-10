@@ -73,7 +73,7 @@
             <Button
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:background="#186110"
+                android:background="@drawable/radius_botton_painel"
                 android:text="@string/painel_projeto_censo"
                 android:id="@+id/btn_novo_projeto_censo"
                 android:layout_gravity="center_horizontal"
@@ -111,7 +111,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:textColor="#FFFFFF"
-                android:background="#186110"
+                android:background="@drawable/radius_botton_painel"
                 android:onClick="novo_projeto_amostras"
                 android:layout_weight="1" />
 
@@ -136,7 +136,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#186110"
+                android:background="@drawable/radius_botton_painel"
                 android:text="@string/painel_todos_projetos_censos"
                 android:id="@+id/btn_todos_censo"
                 android:layout_gravity="center_horizontal"
@@ -167,7 +167,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#186110"
+                android:background="@drawable/radius_botton_painel"
                 android:text="@string/painel_todos_projetos_amostras"
                 android:id="@+id/btn_todas_amostras"
                 android:layout_gravity="center_horizontal"

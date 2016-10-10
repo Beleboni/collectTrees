@@ -81,5 +81,15 @@ public class AmostraDAO {
         return amostra;
     }
 
+    public void alterar(Amostra amostra){
+        ContentValues values = new ContentValues();
+        values.put("nome", amostra.getNome());
+        values.put("tamanho", amostra.getTamanho());
+        values.put("status", amostra.getStatus());
+
+        db.update("amostras", values, "id = ?", new String[]{
+            amostra.getId().toString()
+        });
+    }
 
 }

@@ -36,6 +36,9 @@ public class TodosProjetosAmostra extends ListActivity {
         //PASSANDO O ADAPTER
         setListAdapter(adapter);
 
+        //CRIANDO O MENU
+        registerForContextMenu(this.getListView());
+
     }
 
 

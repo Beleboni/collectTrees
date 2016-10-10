@@ -79,4 +79,16 @@ public class ProjetoCensoDAO {
     }
 
 
+    public void alterar(ProjetoCenso projetoCenso) {
+        ContentValues values = new ContentValues();
+        values.put("id", projetoCenso.getId());
+        values.put("nome", projetoCenso.getNome());
+        values.put("area_inventariada", projetoCenso.getAreaInventariada());
+        values.put("status", projetoCenso.getStatus());
+
+        db.update("projeto_censo", values, "id = ?", new String[] {
+                projetoCenso.getId().toString()
+        });
+    }
+
 }

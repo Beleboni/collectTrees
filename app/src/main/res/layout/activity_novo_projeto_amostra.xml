@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:text="@string/criar_projeto"
             android:id="@+id/btn_criar_projeto_censo"
-            android:background="#186110"
+            android:background="@drawable/radius_botton_painel"
             android:layout_marginTop="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"

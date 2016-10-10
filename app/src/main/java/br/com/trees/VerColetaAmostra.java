@@ -34,15 +34,15 @@ public class VerColetaAmostra extends ListActivity {
 
         Bundle extras = getIntent().getExtras();
 
-        Long s = extras.getLong("idAmostra");
+        String idAmostra = extras.getString("idAmostra");
 
         TextView tvNomeAmostra = (TextView)findViewById(R.id.txt_nome_amostra);
-        ProjetoAmostras projetoAmostras = projetoAmostrasDAO.buscar(s.toString());
+        ProjetoAmostras projetoAmostras = projetoAmostrasDAO.buscar(idAmostra);
 
         tvNomeAmostra.setText(projetoAmostras.getNome());
         Toast.makeText(this, projetoAmostras.getNome(), Toast.LENGTH_LONG).show();
 
-        dadosProjetoAmostraList = dao.listarPorAmostra(s.toString());
+        dadosProjetoAmostraList = dao.listarPorAmostra(idAmostra);
 
         //ADAPTER
         coletaAmostraAdapter = new ColetaAmostraAdapter(this, R.layout.activity_lista_dados_amostra, dadosProjetoAmostraList);
