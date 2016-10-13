@@ -72,4 +72,18 @@ public class ProjetoAmostrasDAO {
         return projetoAmostras;
     }
 
+
+    public void alterar(ProjetoAmostras projetoAmostras){
+        ContentValues values = new ContentValues();
+        values.put("id", projetoAmostras.getId());
+        values.put("nome", projetoAmostras.getNome());
+        values.put("area_inventariada", projetoAmostras.getAreaInventariada());
+        values.put("indice_confianca", projetoAmostras.getIndiceConfianca());
+        values.put("status", projetoAmostras.getStatus());
+
+        db.update("projeto_amostra", values, "id = ?", new String[]{
+                projetoAmostras.getId().toString()
+        });
+    }
+
 }
