@@ -92,4 +92,19 @@ public class AmostraDAO {
         });
     }
 
+    public int countAmostrasNaoConcluidas(String idProjeto) {
+        String query = "select count(*) as contador from amostras where id_projeto = ? and status != 'CONCLUIDO'";
+        Cursor cursor = db.rawQuery(query, new String[] { idProjeto });
+
+        int count = 0;
+
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(cursor.getColumnIndex("contador"));
+        }
+
+        cursor.close();
+
+        return count;
+    }
+
 }

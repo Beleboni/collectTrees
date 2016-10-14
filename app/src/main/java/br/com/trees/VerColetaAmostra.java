@@ -7,17 +7,17 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.com.dao.AmostraDAO;
 import br.com.dao.DadosProjetoAmostraDAO;
-import br.com.dao.ProjetoAmostrasDAO;
+import br.com.model.Amostra;
 import br.com.model.DadosProjetoAmostra;
-import br.com.model.ProjetoAmostras;
 
 /**
  * Created by Fernando on 25/09/2016.
  */
 public class VerColetaAmostra extends ListActivity {
 
-    ProjetoAmostrasDAO projetoAmostrasDAO;
+    AmostraDAO amostrasDAO;
 
     List<DadosProjetoAmostra> dadosProjetoAmostraList;
     DadosProjetoAmostraDAO dao;
@@ -29,7 +29,7 @@ public class VerColetaAmostra extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coletadas_amostra);
 
-        projetoAmostrasDAO = new ProjetoAmostrasDAO(this);
+        amostrasDAO = new AmostraDAO(this);
         dao = new DadosProjetoAmostraDAO(this);
 
         Bundle extras = getIntent().getExtras();
@@ -37,10 +37,11 @@ public class VerColetaAmostra extends ListActivity {
         String idAmostra = extras.getString("idAmostra");
 
         TextView tvNomeAmostra = (TextView)findViewById(R.id.txt_nome_amostra);
-        ProjetoAmostras projetoAmostras = projetoAmostrasDAO.buscar(idAmostra);
 
-        tvNomeAmostra.setText(projetoAmostras.getNome());
-        Toast.makeText(this, projetoAmostras.getNome(), Toast.LENGTH_LONG).show();
+        Amostra amostra = amostrasDAO.buscar(idAmostra);
+
+        tvNomeAmostra.setText(amostra.getNome());
+        Toast.makeText(this, amostra.getNome(), Toast.LENGTH_LONG).show();
 
         dadosProjetoAmostraList = dao.listarPorAmostra(idAmostra);
 

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.com.dao.AmostraDAO;
 import br.com.dao.ProjetoAmostrasDAO;
 import br.com.model.ProjetoAmostras;
 import br.com.status.Status;
@@ -26,6 +27,7 @@ public class TodosProjetosAmostra extends ListActivity {
     ProjetoAmostrasAdapter adapter;
     List<ProjetoAmostras> projetoAmostras;
     ProjetoAmostrasDAO dao;
+    AmostraDAO amostraDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class TodosProjetosAmostra extends ListActivity {
 
         //INSTANCIANDO O DAO
         dao = new ProjetoAmostrasDAO(this);
+        amostraDao = new AmostraDAO(this);
+
         projetoAmostras = dao.listar();
 
         //PEGANDO DADOS DO ADAPTER
@@ -74,6 +78,11 @@ public class TodosProjetosAmostra extends ListActivity {
     public void doActionMenuItem(int id, ProjetoAmostras projetoAmostras){
         switch (id){
             case 0: {
+                if (this.amostraDao.countAmostrasNaoConcluidas(projetoAmostras.getId().toString()) > 0) {
+                    Toast.makeText(this, "O projeto possui amostras não concluídas.", Toast.LENGTH_LONG).show();
+                    break;
+                }
+
                 if(projetoAmostras.getStatus().equals("CONCLUIDO")){
                     projetoAmostras.setStatus(Status.EM_PROGRESSO.toString());
                 }else if(projetoAmostras.getStatus().equals("EM_PROGRESSO")){
