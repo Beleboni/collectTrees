@@ -46,4 +46,8 @@
     <string name="txt_arv_coletada">Árvores coletadas:</string>
     <string name="btn_ver_coleta">Ver coleta</string>
     <string name="field_empty">O campo está vazio.</string>
+    <string name="tv_text_login">Identificação</string>
+    <string name="tv_login">Login</string>
+    <string name="tv_senha">Senha:</string>
+    <string name="btn_conect">Conectar</string>
 </resources>

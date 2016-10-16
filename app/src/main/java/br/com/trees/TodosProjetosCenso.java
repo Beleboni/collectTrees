@@ -87,8 +87,10 @@ public class TodosProjetosCenso extends ListActivity {
                 break;
             }
             case 1: {
-                Toast.makeText(this, "Projeto " + projetoCenso.getNome() + " falta concluir!",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Projeto " + projetoCenso.getNome() + " falta concluir!",
+                        //Toast.LENGTH_LONG).show();
+                Intent abre_login = new Intent(this, IdentificacaoActivity.class);
+                startActivity(abre_login);
                 break;
             }
         }
