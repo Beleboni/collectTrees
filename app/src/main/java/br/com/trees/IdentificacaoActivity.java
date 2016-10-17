@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import br.com.model.Usuario;
 import br.com.services.HttpConnection;
+import br.com.validator.Validator;
 
 /**
  * Created by Fernando on 15/10/2016.
@@ -31,37 +32,19 @@ public class IdentificacaoActivity extends Activity {
         txtSenha = (EditText) findViewById(R.id.txt_senha);
     }
 
-//    public void getIdentificacao(View v){
-//        String login = txtLogin.getText().toString();
-//        String senha = txtSenha.getText().toString();
-//
-//        // Instância
-//        //AlertDialog.Builder dialogo = new AlertDialog.Builder(IdentificacaoActivity.this);
-//        // setando título
-//        //dialogo.setTitle("Resultado");
-//        // setando mensagem
-//        //dialogo.setMessage("Login: " + login + " Senha: " + senha);
-//        // setando botão
-//        //dialogo.setNeutralButton("OK", null);
-//        // chamando o AlertDialog
-//        //dialogo.show();
-//
-//
-//    }
-
     public void sendJson(View v){
-        Usuario usuario = new Usuario();
-        usuario.setLogin(txtLogin.getText().toString());
-        usuario.setSenha(txtSenha.getText().toString());
-
-        String json = generateJSON(usuario);
-
-        callServer("send-json", json);
+        //VERIFICANDO SE OS CAMPOS ESTÃO VAZIOS
+        if(Validator.validateEmptyField(this, txtLogin, txtSenha)) {
+            Usuario usuario = new Usuario();
+            usuario.setLogin(txtLogin.getText().toString());
+            usuario.setSenha(txtSenha.getText().toString());
+            String json = generateJSON(usuario);
+            callServer("send-json", json);
+        }
     }
 
     public String generateJSON(Usuario usuario){
         JSONObject jo = new JSONObject();
-
         try{
             jo.put("login", usuario.getLogin());
             jo.put("senha", usuario.getSenha());
@@ -71,13 +54,35 @@ public class IdentificacaoActivity extends Activity {
         return (jo.toString());
     }
 
+    private Usuario degenerateJSON(String data){
+        Usuario usuario = new Usuario();
+
+        try{
+            JSONObject jo = new JSONObject(data);
+
+            usuario.setId(jo.getLong("id"));
+            usuario.setLogin(jo.getString("login"));
+            usuario.setSenha(jo.getString("senha"));
+
+            Log.i("usuario", usuario.toString());
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return (usuario);
+    }
+
     @SuppressLint("NewApi")
     private void callServer(final String method, final String data){
+
         new Thread(){
             public  void run(){
-                String answer = HttpConnection.getSetDataWeb("http://www.institutofernandobeleboni.com.br/florestsimulator/json/progressUsuario.php", method, data);
+                String answer = HttpConnection.getSetDataWeb("http://www.institutofernandobeleboni.com.br/" +
+                        "florestsimulator/json/progressUsuario.php", method, data);
                 Log.i("Script", "ANSWER: " + answer);
+                degenerateJSON(answer);
             }
         }.start();
     }
+
 }
