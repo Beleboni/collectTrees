@@ -1,4 +1,4 @@
-package br.com.trees;
+package br.com.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.model.ProjetoAmostras;
+import br.com.trees.R;
 
 /**
  * Created by Fernando on 07/09/2016.

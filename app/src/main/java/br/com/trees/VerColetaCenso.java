@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.com.adapter.ColetaCensoAdapter;
 import br.com.dao.DadosProjetoCensoDAO;
 import br.com.dao.ProjetoCensoDAO;
 import br.com.model.DadosProjetoCenso;

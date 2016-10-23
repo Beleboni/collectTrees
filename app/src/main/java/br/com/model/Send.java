@@ -3,6 +3,8 @@ package br.com.model;
 import android.content.Intent;
 import android.os.Bundle;
 
+import br.com.enums.TipoProjeto;
+
 /**
  * Created by Fernando on 22/10/2016.
  */
@@ -57,6 +59,14 @@ public class Send implements ToSendInterface {
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.banco.BancoDados;
+import br.com.enums.Status;
 import br.com.model.ProjetoCenso;
 
 /**
@@ -74,7 +75,6 @@ public class ProjetoCensoDAO {
     }
 
     public ProjetoCenso buscar(Long id){
-
         return this.buscar(id.toString());
     }
 
@@ -88,6 +88,15 @@ public class ProjetoCensoDAO {
 
         db.update("projeto_censo", values, "id = ?", new String[] {
                 projetoCenso.getId().toString()
+        });
+    }
+
+    public void alterarStatus(Long idProjeto, Status novoStatus) {
+        ContentValues values = new ContentValues();
+        values.put("status", novoStatus.toString());
+
+        db.update("projeto_censo", values, "id = ?", new String[] {
+                idProjeto.toString()
         });
     }
 

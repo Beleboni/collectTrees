@@ -13,7 +13,7 @@ import br.com.dao.AmostraDAO;
 import br.com.dao.ProjetoAmostrasDAO;
 import br.com.model.Amostra;
 import br.com.model.ProjetoAmostras;
-import br.com.status.Status;
+import br.com.enums.Status;
 
 /**
  * Created by Fernando on 28/07/2016.

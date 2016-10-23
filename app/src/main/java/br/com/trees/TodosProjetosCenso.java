@@ -14,10 +14,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.com.adapter.ProjetoCensoAdapter;
 import br.com.dao.ProjetoCensoDAO;
 import br.com.model.ProjetoCenso;
 import br.com.model.Send;
-import br.com.status.Status;
+import br.com.enums.Status;
 
 /**
  * Created by Fernando on 28/07/2016.
@@ -58,10 +59,10 @@ public class TodosProjetosCenso extends ListActivity {
         //DEVOLVENDO MENSAGEM AO USUARIO
         if (projetoCenso.getStatus().equals("CONCLUIDO")) {
             menu.add(Menu.NONE, 0, Menu.NONE, "Marcar como em progresso");
+            menu.add(Menu.NONE, 1, Menu.NONE, "Enviar projeto");
         } else if (projetoCenso.getStatus().equals("EM_PROGRESSO")) {
             menu.add(Menu.NONE, 0, Menu.NONE, "Marcar como concluído");
         }
-        menu.add(Menu.NONE, 1, Menu.NONE, "Enviar projeto");
     }
 
     @Override
@@ -104,7 +105,7 @@ public class TodosProjetosCenso extends ListActivity {
 
         //VERIFICANDO O STATUS DO PROJETO
         //SE ELE ESTIVER CONCLUIDO O SISTEMA CHAMA A ACTIVITY VER COLETA
-        if (projetoCenso.getStatus().equals("CONCLUIDO")) {
+        if (projetoCenso.getStatus().equals("CONCLUIDO") || projetoCenso.getStatus().equals("ENVIADO")) {
             Intent it = new Intent(this, VerColetaCenso.class);
             it.putExtra("idProjetoCenso", projetoCenso.getId());
             startActivity(it);

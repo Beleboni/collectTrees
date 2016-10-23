@@ -11,7 +11,7 @@ import java.util.Date;
 
 import br.com.dao.ProjetoAmostrasDAO;
 import br.com.model.ProjetoAmostras;
-import br.com.status.Status;
+import br.com.enums.Status;
 import br.com.validator.Validator;
 
 /**

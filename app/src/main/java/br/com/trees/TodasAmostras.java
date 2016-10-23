@@ -14,11 +14,12 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.com.adapter.AmostrasAdapter;
 import br.com.dao.AmostraDAO;
 import br.com.dao.ProjetoAmostrasDAO;
 import br.com.model.Amostra;
 import br.com.model.ProjetoAmostras;
-import br.com.status.Status;
+import br.com.enums.Status;
 
 public class TodasAmostras extends ListActivity{
 

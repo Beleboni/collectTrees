@@ -3,6 +3,8 @@ package br.com.model;
 import java.util.Date;
 import java.util.List;
 
+import br.com.enums.TipoProjeto;
+
 /**
  * Created by Fernando on 29/07/2016.
  */

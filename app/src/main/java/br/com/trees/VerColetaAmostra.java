@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.com.adapter.ColetaAmostraAdapter;
 import br.com.dao.AmostraDAO;
 import br.com.dao.DadosProjetoAmostraDAO;
 import br.com.model.Amostra;

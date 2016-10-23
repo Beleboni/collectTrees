@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import br.com.model.JSON;
 import br.com.model.Result;
+import br.com.model.Send;
 
 /**
  * Created by Fernando on 15/10/2016.
@@ -49,6 +50,10 @@ public class HttpConnection {
 
     public static Result getSetDataWeb(String url, String... params) {
         return getSetDataWeb(url, params[0], params[1]);
+    }
+
+    public static Result getSetDataWeb(Send send) {
+        return getSetDataWeb(send.getUrl(), send.getParams());
     }
 
 }
