@@ -1,17 +1,23 @@
 package br.com.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Fernando on 29/07/2016.
  */
-public class ProjetoCenso {
+public class ProjetoCenso implements ToSendInterface {
 
     private Long id;
     private String nome;
     private Double areaInventariada;
     private String status;
     private Date dataCadastro;
+
+    private List<DadosProjetoCenso> dadosProjetoCensos;
+
+    // não salva banco app
+    private Long idUsuario;
 
     public ProjetoCenso() {
     }
@@ -48,11 +54,34 @@ public class ProjetoCenso {
         this.nome = nome;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<DadosProjetoCenso> getDadosProjetoCensos() {
+        return dadosProjetoCensos;
+    }
+
+    public void setDadosProjetoCensos(List<DadosProjetoCenso> dadosProjetoCensos) {
+        this.dadosProjetoCensos = dadosProjetoCensos;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    @Override
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public TipoProjeto getTipo() {
+        return TipoProjeto.PROJETO_CENSO;
+    }
+
+    @Override
+    public Long getIdUsuario() {
+        return this.idUsuario;
     }
 }

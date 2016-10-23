@@ -16,6 +16,7 @@ import java.util.List;
 
 import br.com.dao.ProjetoCensoDAO;
 import br.com.model.ProjetoCenso;
+import br.com.model.Send;
 import br.com.status.Status;
 
 /**
@@ -90,6 +91,7 @@ public class TodosProjetosCenso extends ListActivity {
                 //Toast.makeText(this, "Projeto " + projetoCenso.getNome() + " falta concluir!",
                         //Toast.LENGTH_LONG).show();
                 Intent abre_login = new Intent(this, IdentificacaoActivity.class);
+                Send.putExtra(abre_login, projetoCenso);
                 startActivity(abre_login);
                 break;
             }

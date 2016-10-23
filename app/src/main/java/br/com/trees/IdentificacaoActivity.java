@@ -1,15 +1,18 @@
 package br.com.trees;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
+import br.com.model.JSON;
+import br.com.model.Result;
+import br.com.model.Send;
 import br.com.model.Usuario;
 import br.com.services.HttpConnection;
 import br.com.validator.Validator;
@@ -22,11 +25,15 @@ public class IdentificacaoActivity extends Activity {
 
     //PEGANDO AS VARIAVEIS
     EditText txtLogin, txtSenha;
+    private Send send;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Bundle extras = getIntent().getExtras();
+        this.send = Send.fromExtra(extras);
 
         txtLogin = (EditText) findViewById(R.id.txt_login);
         txtSenha = (EditText) findViewById(R.id.txt_senha);
@@ -35,54 +42,48 @@ public class IdentificacaoActivity extends Activity {
     public void sendJson(View v){
         //VERIFICANDO SE OS CAMPOS ESTÃO VAZIOS
         if(Validator.validateEmptyField(this, txtLogin, txtSenha)) {
-            Usuario usuario = new Usuario();
-            usuario.setLogin(txtLogin.getText().toString());
-            usuario.setSenha(txtSenha.getText().toString());
-            String json = generateJSON(usuario);
-            callServer("send-json", json);
-        }
-    }
-
-    public String generateJSON(Usuario usuario){
-        JSONObject jo = new JSONObject();
-        try{
-            jo.put("login", usuario.getLogin());
-            jo.put("senha", usuario.getSenha());
-        }catch (JSONException e){
-            e.printStackTrace();
-        }
-        return (jo.toString());
-    }
-
-    private Usuario degenerateJSON(String data){
-        Usuario usuario = new Usuario();
-
-        try{
-            JSONObject jo = new JSONObject(data);
-
-            usuario.setId(jo.getLong("id"));
-            usuario.setLogin(jo.getString("login"));
-            usuario.setSenha(jo.getString("senha"));
-
-            Log.i("usuario", usuario.toString());
-
-        }catch (JSONException e){
-            e.printStackTrace();
-        }
-        return (usuario);
-    }
-
-    @SuppressLint("NewApi")
-    private void callServer(final String method, final String data){
-
-        new Thread(){
-            public  void run(){
-                String answer = HttpConnection.getSetDataWeb("http://www.institutofernandobeleboni.com.br/" +
-                        "florestsimulator/json/progressUsuario.php", method, data);
-                Log.i("Script", "ANSWER: " + answer);
-                degenerateJSON(answer);
+            try {
+                Usuario usuario = new Usuario();
+                usuario.setLogin(txtLogin.getText().toString());
+                usuario.setSenha(txtSenha.getText().toString());
+                String json = JSON.toString(usuario);
+                this.send.setParams("send-json", json);
+                new LoginTask().execute(this.send);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }.start();
+        }
+    }
+
+    private class LoginTask extends AsyncTask<Send, Void, Result> {
+
+        private Send send;
+        private static final String url = "http://www.institutofernandobeleboni.com.br/florestsimulator/json/progressUsuario.php";
+
+        @Override
+        protected Result doInBackground(Send... send) {
+            this.send = send[0];
+            return HttpConnection.getSetDataWeb(url, this.send.getParams());
+        }
+
+        @Override
+        protected void onPostExecute(Result result) {
+            if (result.hasError()) {
+                String msg = JSON.from(result.getAnswer(), String.class);
+                Toast.makeText(IdentificacaoActivity.this, msg, Toast.LENGTH_LONG).show();
+            } else {
+                Usuario u = JSON.from(result.getAnswer(), Usuario.class);
+                Toast.makeText(IdentificacaoActivity.this, "Usuário " + u.getLogin() + " conectado com sucesso.",
+                        Toast.LENGTH_LONG).show();
+
+                this.send.setIdUsuario(u.getId());
+
+                Intent enviar = new Intent(IdentificacaoActivity.this, EnviaProjetoActivity.class);
+                Send.putExtra(enviar, this.send);
+                startActivity(enviar);
+            }
+        }
+
     }
 
 }

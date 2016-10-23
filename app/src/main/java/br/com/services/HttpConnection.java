@@ -13,6 +13,9 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import br.com.model.JSON;
+import br.com.model.Result;
+
 /**
  * Created by Fernando on 15/10/2016.
  * Esta classe é responsavel por gerenciar os json enviados e recebidos
@@ -20,11 +23,10 @@ import java.util.ArrayList;
  */
 public class HttpConnection {
 
-    public static String getSetDataWeb(String url, String method, String data){
+    public static Result getSetDataWeb(String url, String method, String data){
 
         HttpClient httpClient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url);
-        String answer = "";
 
         try{
             ArrayList<NameValuePair> valores = new ArrayList<>();
@@ -33,15 +35,20 @@ public class HttpConnection {
 
             httpPost.setEntity(new UrlEncodedFormEntity(valores));
             HttpResponse resposta = httpClient.execute(httpPost);
-            answer = EntityUtils.toString(resposta.getEntity());
+            String answer = EntityUtils.toString(resposta.getEntity());
+            return JSON.from(answer, Result.class);
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        } catch (ClientProtocolException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
         }
-        catch (NullPointerException e){
-            e.printStackTrace();
-        }catch (ClientProtocolException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return (answer);
+        return null;
     }
+
+    public static Result getSetDataWeb(String url, String... params) {
+        return getSetDataWeb(url, params[0], params[1]);
+    }
+
 }

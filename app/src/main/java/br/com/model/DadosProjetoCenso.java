@@ -64,4 +64,5 @@ public class DadosProjetoCenso {
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
+
 }
