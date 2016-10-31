@@ -81,6 +81,10 @@ public class AmostraDAO {
         return amostra;
     }
 
+    public Amostra buscar(Long id) {
+        return this.buscar(id.toString());
+    }
+
     public void alterar(Amostra amostra){
         ContentValues values = new ContentValues();
         values.put("nome", amostra.getNome());

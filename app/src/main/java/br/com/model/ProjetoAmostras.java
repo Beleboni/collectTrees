@@ -1,11 +1,14 @@
 package br.com.model;
 
 import java.util.Date;
+import java.util.List;
+
+import br.com.enums.TipoProjeto;
 
 /**
  * Created by Fernando on 29/07/2016.
  */
-public class ProjetoAmostras {
+public class ProjetoAmostras implements ToSendInterface {
 
     private Long id;
     private String nome;
@@ -13,6 +16,11 @@ public class ProjetoAmostras {
     private Double indiceConfianca;
     private String status;
     private Date dataCadastro;
+
+    private List<DadosProjetoAmostra> dadosProjetoAmostras;
+
+    //não salva no banco
+    private Long idUsuario;
 
     public ProjetoAmostras() {}
 
@@ -26,6 +34,16 @@ public class ProjetoAmostras {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public TipoProjeto getTipo() {
+        return TipoProjeto.PROJETO_AMOSTRAS;
+    }
+
+    @Override
+    public Long getIdUsuario() {
+        return this.idUsuario;
     }
 
     public void setId(Long id) {
@@ -70,5 +88,17 @@ public class ProjetoAmostras {
 
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public List<DadosProjetoAmostra> getDadosProjetoAmostras() {
+        return dadosProjetoAmostras;
+    }
+
+    public void setDadosProjetoAmostras(List<DadosProjetoAmostra> dadosProjetoAmostras) {
+        this.dadosProjetoAmostras = dadosProjetoAmostras;
     }
 }

@@ -55,9 +55,11 @@ public class IdentificacaoActivity extends Activity {
         }
     }
 
+    //A CLASSE LOGIN TASK É UMA CLASSE INTERNA ELA E RESPONSAVEL POR ENVIAR OS DADDOS DO USUARIO VIA WEB SERVICE
     private class LoginTask extends AsyncTask<Send, Void, Result> {
 
         private Send send;
+        //URL QUE RECEBE AS INFORMAÇÕES
         private static final String url = "http://www.institutofernandobeleboni.com.br/florestsimulator/json/progressUsuario.php";
 
         @Override
@@ -69,21 +71,18 @@ public class IdentificacaoActivity extends Activity {
         @Override
         protected void onPostExecute(Result result) {
             if (result.hasError()) {
+                //GET ANSWER
                 String msg = JSON.from(result.getAnswer(), String.class);
                 Toast.makeText(IdentificacaoActivity.this, msg, Toast.LENGTH_LONG).show();
             } else {
                 Usuario u = JSON.from(result.getAnswer(), Usuario.class);
                 Toast.makeText(IdentificacaoActivity.this, "Usuário " + u.getLogin() + " conectado com sucesso.",
                         Toast.LENGTH_LONG).show();
-
                 this.send.setIdUsuario(u.getId());
-
                 Intent enviar = new Intent(IdentificacaoActivity.this, EnviaProjetoActivity.class);
                 Send.putExtra(enviar, this.send);
                 startActivity(enviar);
             }
         }
-
     }
-
 }

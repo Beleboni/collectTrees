@@ -18,6 +18,7 @@ import br.com.dao.AmostraDAO;
 import br.com.dao.ProjetoAmostrasDAO;
 import br.com.model.ProjetoAmostras;
 import br.com.enums.Status;
+import br.com.model.Send;
 
 /**
  * Created by Fernando on 28/07/2016.
@@ -60,12 +61,12 @@ public class TodosProjetosAmostra extends ListActivity {
         ProjetoAmostras projetoAmostras= this.projetoAmostras.get(info.position);
         menu.setHeaderTitle(projetoAmostras.getNome());
         //DEVOLVENDO MENSAGEM AO USUARIO
-        if(projetoAmostras.getStatus().equals("CONCLUIDO")){
+        if (projetoAmostras.getStatus().equals("CONCLUIDO")){
             menu.add(Menu.NONE, 0, Menu.NONE, "Marcar como em progresso");
-        }else if(projetoAmostras.getStatus().equals("EM_PROGRESSO")){
+            menu.add(Menu.NONE, 1, Menu.NONE, "Enviar projeto");
+        } else if (projetoAmostras.getStatus().equals("EM_PROGRESSO")){
             menu.add(Menu.NONE, 0, Menu.NONE, "Marcar como concluído");
         }
-        menu.add(Menu.NONE, 1, Menu.NONE, "Enviar projeto");
     }
 
 
@@ -98,8 +99,9 @@ public class TodosProjetosAmostra extends ListActivity {
             }
 
             case 1: {
-                Toast.makeText(this, "Projeto " + projetoAmostras.getNome() + " falta concluir !",
-                        Toast.LENGTH_SHORT).show();
+                Intent abre_login = new Intent(this, IdentificacaoActivity.class);
+                Send.putExtra(abre_login, projetoAmostras);
+                startActivity(abre_login);
                 break;
             }
         }

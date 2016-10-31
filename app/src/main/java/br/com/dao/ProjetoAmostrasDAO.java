@@ -75,6 +75,9 @@ public class ProjetoAmostrasDAO {
         return projetoAmostras;
     }
 
+    public ProjetoAmostras buscar(Long id) {
+        return this.buscar(id.toString());
+    }
 
     public void alterar(ProjetoAmostras projetoAmostras){
         ContentValues values = new ContentValues();

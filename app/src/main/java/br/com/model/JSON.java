@@ -10,9 +10,14 @@ import org.json.JSONObject;
  * Created by Fernando on 22/10/2016.
  */
 public class JSON {
+    //CONVERTE OBJETOS EM JSON
 
     public static JSONObject toJson(Object obj) throws JSONException {
         return new JSONObject(new Gson().toJson(obj));
+    }
+
+    public static JsonElement toJsonElement(Object obj) {
+        return new Gson().toJsonTree(obj);
     }
 
     public static String toString(Object obj) throws JSONException {

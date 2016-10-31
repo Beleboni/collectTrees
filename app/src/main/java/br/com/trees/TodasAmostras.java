@@ -102,8 +102,8 @@ public class TodasAmostras extends ListActivity{
     public void doActionMenuItem(int id, Amostra amostra){
         switch (id){
             case 0: {
-                if (projetoAmostras.getStatus().equals("CONCLUIDO")) {
-                    Toast.makeText(this, "Projeto " + amostra.getNome() + " já foi concluído!",
+                if (projetoAmostras.getStatus().equals("CONCLUIDO") || projetoAmostras.getStatus().equals("ENVIADO")) {
+                    Toast.makeText(this, "Projeto " + amostra.getNome() + " já foi concluído ou enviado!",
                             Toast.LENGTH_LONG).show();
                     break;
                 }

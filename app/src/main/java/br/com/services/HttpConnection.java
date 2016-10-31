@@ -12,6 +12,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.model.JSON;
 import br.com.model.Result;
@@ -24,30 +25,28 @@ import br.com.model.Send;
  */
 public class HttpConnection {
 
-    public static Result getSetDataWeb(String url, String method, String data){
-
+    public static Result getSetDataWeb(String url, String method, String data) {
         HttpClient httpClient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url);
 
         try{
-            ArrayList<NameValuePair> valores = new ArrayList<>();
+            List<NameValuePair> valores = new ArrayList<>();
             valores.add(new BasicNameValuePair("method", method));
             valores.add(new BasicNameValuePair("json", data));
-
             httpPost.setEntity(new UrlEncodedFormEntity(valores));
             HttpResponse resposta = httpClient.execute(httpPost);
             String answer = EntityUtils.toString(resposta.getEntity());
+
             return JSON.from(answer, Result.class);
-        } catch (NullPointerException e){
-            e.printStackTrace();
-        } catch (ClientProtocolException e){
+
+        } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
-        return null;
-    }
 
+        return new Result("Erro ao se conectar.", Result.ERROR);
+    }
     public static Result getSetDataWeb(String url, String... params) {
         return getSetDataWeb(url, params[0], params[1]);
     }

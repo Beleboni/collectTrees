@@ -9,19 +9,28 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import br.com.dao.DadosProjetoAmostraDAO;
 import br.com.dao.DadosProjetoCensoDAO;
+import br.com.dao.ProjetoAmostrasDAO;
 import br.com.dao.ProjetoCensoDAO;
 import br.com.model.JSON;
+import br.com.model.ProjetoAmostras;
 import br.com.model.ProjetoCenso;
 import br.com.model.Result;
 import br.com.model.Send;
 import br.com.services.HttpConnection;
 
+/**
+ * Created by Fernando on 23/10/2016.
+ * Está tela serve para enviar o projeto via json
+ */
 public class EnviaProjetoActivity extends Activity {
 
     private ProgressDialog load;
     private ProjetoCensoDAO projetoCensoDAO;
     private DadosProjetoCensoDAO dadosProjetoCensoDAO;
+    private ProjetoAmostrasDAO projetoAmostrasDAO;
+    private DadosProjetoAmostraDAO dadosProjetoAmostraDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +41,12 @@ public class EnviaProjetoActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         Send send = Send.fromExtra(extras);
+
         projetoCensoDAO = new ProjetoCensoDAO(this);
         dadosProjetoCensoDAO = new DadosProjetoCensoDAO(this);
+
+        projetoAmostrasDAO = new ProjetoAmostrasDAO(this);
+        dadosProjetoAmostraDAO = new DadosProjetoAmostraDAO(this);
 
         try {
             this.enviaProjeto(send);
@@ -46,7 +59,13 @@ public class EnviaProjetoActivity extends Activity {
 
     private void enviaProjeto(Send send) throws JSONException {
         switch (send.getTipoProjeto()) {
+
             case PROJETO_AMOSTRAS:
+                ProjetoAmostras projetoAmostras = projetoAmostrasDAO.buscar(send.getIdProjeto());
+                projetoAmostras.setDadosProjetoAmostras(dadosProjetoAmostraDAO.listarPorProjeto(projetoAmostras.getId()));
+                projetoAmostras.setIdUsuario(send.getIdUsuario());
+                send.setUrl("http://www.institutofernandobeleboni.com.br/florestsimulator/json/progressProjetoAmostras.php");
+                send.setParams("send-project-amostras", JSON.toString(projetoAmostras));
                 break;
 
             case PROJETO_CENSO: {
@@ -61,6 +80,7 @@ public class EnviaProjetoActivity extends Activity {
 
             default:
                 throw new JSONException("Erro");
+
         }
 
         new EnviaTask().execute(send);
@@ -75,17 +95,14 @@ public class EnviaProjetoActivity extends Activity {
             this.send = send[0];
             return HttpConnection.getSetDataWeb(this.send);
         }
-
         @Override
         protected void onPostExecute(Result result) {
             String msg = JSON.from(result.getAnswer(), String.class);
             Toast.makeText(EnviaProjetoActivity.this, msg, Toast.LENGTH_LONG).show();
-
             if (!result.hasError()) {
                 send.getTipoProjeto().alterarStatus(EnviaProjetoActivity.this, send.getIdProjeto(),
                         br.com.enums.Status.ENVIADO);
             }
-
             Intent it = new Intent(EnviaProjetoActivity.this, TodosProjetosCenso.class);
             startActivity(it);
             load.dismiss();

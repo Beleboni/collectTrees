@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.banco.BancoDados;
+import br.com.model.Amostra;
 import br.com.model.Arvore;
 import br.com.model.DadosProjetoAmostra;
 
@@ -23,10 +24,13 @@ public class DadosProjetoAmostraDAO {
 
     ArvoreDAO arvoreDAO;
 
+    AmostraDAO amostraDAO;
+
     public DadosProjetoAmostraDAO(Context context){
         //CHAMANDO A CLASSE DO BANCO
         db = BancoDados.getDB(context);
         this.arvoreDAO = new ArvoreDAO(context);
+        this.amostraDAO = new AmostraDAO(context);
     }
 
     public void salvar(DadosProjetoAmostra dadosProjetoAmostra){
@@ -59,6 +63,33 @@ public class DadosProjetoAmostraDAO {
                 Arvore arvore = arvoreDAO.buscar(c.getLong(c.getColumnIndex("id_arvore")));
                 dpc.setArvore(arvore);
 
+                dpcs.add(dpc);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+
+        return dpcs;
+    }
+
+    public List<DadosProjetoAmostra> listarPorProjeto(Long idProjeto) {
+        String[] colunas = new String[]{"id", "id_arvore", "altura", "cap", "id_amostra", "id_projeto"};
+        String[] args = new String[]{ idProjeto.toString() };
+
+        Cursor c = db.query("dados_projeto_amostra", colunas, "id_projeto = ?", args, null, null, null);
+
+        List<DadosProjetoAmostra>  dpcs = new ArrayList<>();
+
+        if (c.moveToFirst()) {
+            do {
+                DadosProjetoAmostra dpc = new DadosProjetoAmostra();
+                dpc.setId(c.getLong(c.getColumnIndex("id")));
+                Arvore arvore = arvoreDAO.buscar(c.getLong(c.getColumnIndex("id_arvore")));
+                dpc.setArvore(arvore);
+                dpc.setAltura(c.getDouble(c.getColumnIndex("altura")));
+                dpc.setCap(c.getDouble(c.getColumnIndex("cap")));
+                Amostra amostra = amostraDAO.buscar(c.getLong(c.getColumnIndex("id_amostra")));
+                dpc.setAmostra(amostra);
                 dpcs.add(dpc);
             } while (c.moveToNext());
         }

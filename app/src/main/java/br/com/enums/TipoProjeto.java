@@ -8,6 +8,8 @@ import br.com.dao.ProjetoCensoDAO;
  * Created by Fernando on 22/10/2016.
  */
 public enum TipoProjeto {
+    //DETERMINA QUAL O TIPO DE PROJETO QUE SERA ENVIANDO E SUAS AÇÕES SOBRE ELE
+    //PADRONIZANDO DE ACORDO COM O PROJETO QUE SERÁ ENVIADO
 
     PROJETO_CENSO(0) {
         @Override

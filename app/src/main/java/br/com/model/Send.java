@@ -9,6 +9,7 @@ import br.com.enums.TipoProjeto;
  * Created by Fernando on 22/10/2016.
  */
 public class Send implements ToSendInterface {
+    //RESPONSAVEL POR MANTER OBJETOS NECESSARIOS PARA O ENVIO NO WEB SERVICES
 
     private static final String EXTRA_ID_PROJETO = "idProjeto";
     private static final String EXTRA_TIPO_PROJETO = "tipoProjeto";
@@ -84,6 +85,8 @@ public class Send implements ToSendInterface {
         return this.idUsuario;
     }
 
+    //PEGA OS EXTRAS GERANDO UM SEND
+    //PADRONIZANDO OS EXTRAS QUE SÃO PASSADOS ENTRE AS ACTIVITYS
     public static Send fromExtra(Bundle extras) {
         TipoProjeto tp = TipoProjeto.from(extras.getInt(EXTRA_TIPO_PROJETO));
         Send send = new Send(extras.getLong(EXTRA_ID_PROJETO), tp);
@@ -91,6 +94,8 @@ public class Send implements ToSendInterface {
         return send;
     }
 
+    //COLOCA NOS EXTRAS OS DADOS DE UM PROJETO
+    //PADRONIZANDO OS EXTRAS QUE SÃO PASSADOS ENTRE AS ACTIVITYS
     public static void putExtra(Intent intent, ToSendInterface projeto) {
         intent.putExtra(EXTRA_ID_PROJETO, projeto.getId());
         intent.putExtra(EXTRA_TIPO_PROJETO, projeto.getTipo().getCodigo());
