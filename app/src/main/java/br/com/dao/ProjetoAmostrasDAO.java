@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.banco.BancoDados;
+import br.com.enums.Status;
 import br.com.model.ProjetoAmostras;
 
 /**
@@ -89,6 +90,15 @@ public class ProjetoAmostrasDAO {
 
         db.update("projeto_amostra", values, "id = ?", new String[]{
                 projetoAmostras.getId().toString()
+        });
+    }
+
+    public void alterarStatus(Long idProjeto, Status novoStatus) {
+        ContentValues values = new ContentValues();
+        values.put("status", novoStatus.toString());
+
+        db.update("projeto_amostra", values, "id = ?", new String[] {
+                idProjeto.toString()
         });
     }
 

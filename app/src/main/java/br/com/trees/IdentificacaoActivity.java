@@ -81,6 +81,7 @@ public class IdentificacaoActivity extends Activity {
                 this.send.setIdUsuario(u.getId());
                 Intent enviar = new Intent(IdentificacaoActivity.this, EnviaProjetoActivity.class);
                 Send.putExtra(enviar, this.send);
+                IdentificacaoActivity.this.finish();
                 startActivity(enviar);
             }
         }

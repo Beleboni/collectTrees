@@ -103,7 +103,8 @@ public class EnviaProjetoActivity extends Activity {
                 send.getTipoProjeto().alterarStatus(EnviaProjetoActivity.this, send.getIdProjeto(),
                         br.com.enums.Status.ENVIADO);
             }
-            Intent it = new Intent(EnviaProjetoActivity.this, TodosProjetosCenso.class);
+            Intent it = new Intent(EnviaProjetoActivity.this, this.send.getTipoProjeto().getClasseRetorno());
+            EnviaProjetoActivity.this.finish();
             startActivity(it);
             load.dismiss();
         }
