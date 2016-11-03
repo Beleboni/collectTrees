@@ -69,6 +69,7 @@ public class ProjetoAmostrasDAO {
         projetoAmostras.setId(c.getLong(c.getColumnIndex("id")));
         projetoAmostras.setNome(c.getString(c.getColumnIndex("nome")));
         projetoAmostras.setAreaInventariada(c.getDouble(c.getColumnIndex("area_inventariada".toString())));
+        projetoAmostras.setIndiceConfianca(c.getDouble(c.getColumnIndex("indice_confianca".toString())));
         projetoAmostras.setStatus(c.getString(c.getColumnIndex("status")));
 
         c.close();

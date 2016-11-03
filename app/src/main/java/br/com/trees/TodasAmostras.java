@@ -88,7 +88,11 @@ public class TodasAmostras extends ListActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, MENU_NOVA_AMOSTRA, 0, "Criar nova amostra");
+
+        if (projetoAmostras.getStatus().equals("EM_PROGRESSO")) {
+            menu.add(0, MENU_NOVA_AMOSTRA, 0, "Criar nova amostra");
+        }
+
         return true;
     }
 

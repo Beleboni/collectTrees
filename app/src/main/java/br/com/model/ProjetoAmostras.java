@@ -17,7 +17,7 @@ public class ProjetoAmostras implements ToSendInterface {
     private String status;
     private Date dataCadastro;
 
-    private List<DadosProjetoAmostra> dadosProjetoAmostras;
+    private List<Amostra> amostras;
 
     //não salva no banco
     private Long idUsuario;
@@ -94,11 +94,11 @@ public class ProjetoAmostras implements ToSendInterface {
         this.idUsuario = idUsuario;
     }
 
-    public List<DadosProjetoAmostra> getDadosProjetoAmostras() {
-        return dadosProjetoAmostras;
+    public List<Amostra> getAmostras() {
+        return amostras;
     }
 
-    public void setDadosProjetoAmostras(List<DadosProjetoAmostra> dadosProjetoAmostras) {
-        this.dadosProjetoAmostras = dadosProjetoAmostras;
+    public void setAmostras(List<Amostra> amostras) {
+        this.amostras = amostras;
     }
 }

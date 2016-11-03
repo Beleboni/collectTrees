@@ -1,6 +1,7 @@
 package br.com.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Fernando on 29/07/2016.
@@ -14,8 +15,9 @@ public class Amostra {
     private String status;
     private Date dataCadastro;
 
-    public Amostra() {
-    }
+    private List<DadosProjetoAmostra> dadosProjetoAmostras;
+
+    public Amostra() { }
 
     public Date getDataCadastro() {
         return dataCadastro;
@@ -63,5 +65,13 @@ public class Amostra {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<DadosProjetoAmostra> getDadosProjetoAmostras() {
+        return dadosProjetoAmostras;
+    }
+
+    public void setDadosProjetoAmostras(List<DadosProjetoAmostra> dadosProjetoAmostras) {
+        this.dadosProjetoAmostras = dadosProjetoAmostras;
     }
 }

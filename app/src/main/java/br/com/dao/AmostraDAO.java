@@ -21,10 +21,12 @@ public class AmostraDAO {
 
     //ACESSO AO BANCO
     SQLiteDatabase db;
+    DadosProjetoAmostraDAO dadosProjetoAmostraDAO;
 
     public AmostraDAO(Context context){
         //CHAMANDO A CLASSE BANCO
         db = BancoDados.getDB(context);
+        this.dadosProjetoAmostraDAO = new DadosProjetoAmostraDAO(context);
     }
 
     public void salvar(Amostra amostra){
@@ -54,6 +56,7 @@ public class AmostraDAO {
                 amostra.setId(c.getLong(c.getColumnIndex("id")));
                 amostra.setNome(c.getString(c.getColumnIndex("nome")));
                 amostra.setTamanho(c.getDouble(c.getColumnIndex("tamanho")));
+                amostra.setDadosProjetoAmostras(dadosProjetoAmostraDAO.listarPorAmostra(amostra.getId()));
                 amostra.setStatus(c.getString(c.getColumnIndex("status")));
                 amostras.add(amostra);
             } while (c.moveToNext());
@@ -62,6 +65,10 @@ public class AmostraDAO {
         c.close();
 
         return amostras;
+    }
+
+    public List<Amostra> listarPorProjeto(Long idProjeto) {
+        return this.listarPorProjeto(idProjeto.toString());
     }
 
     public Amostra buscar(String id){

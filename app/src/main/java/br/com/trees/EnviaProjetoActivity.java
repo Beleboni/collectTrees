@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
-import br.com.dao.DadosProjetoAmostraDAO;
+import br.com.dao.AmostraDAO;
 import br.com.dao.DadosProjetoCensoDAO;
 import br.com.dao.ProjetoAmostrasDAO;
 import br.com.dao.ProjetoCensoDAO;
@@ -30,7 +30,7 @@ public class EnviaProjetoActivity extends Activity {
     private ProjetoCensoDAO projetoCensoDAO;
     private DadosProjetoCensoDAO dadosProjetoCensoDAO;
     private ProjetoAmostrasDAO projetoAmostrasDAO;
-    private DadosProjetoAmostraDAO dadosProjetoAmostraDAO;
+    private AmostraDAO amostraDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class EnviaProjetoActivity extends Activity {
         dadosProjetoCensoDAO = new DadosProjetoCensoDAO(this);
 
         projetoAmostrasDAO = new ProjetoAmostrasDAO(this);
-        dadosProjetoAmostraDAO = new DadosProjetoAmostraDAO(this);
+        amostraDAO = new AmostraDAO(this);
 
         try {
             this.enviaProjeto(send);
@@ -62,7 +62,7 @@ public class EnviaProjetoActivity extends Activity {
 
             case PROJETO_AMOSTRAS:
                 ProjetoAmostras projetoAmostras = projetoAmostrasDAO.buscar(send.getIdProjeto());
-                projetoAmostras.setDadosProjetoAmostras(dadosProjetoAmostraDAO.listarPorProjeto(projetoAmostras.getId()));
+                projetoAmostras.setAmostras(amostraDAO.listarPorProjeto(projetoAmostras.getId()));
                 projetoAmostras.setIdUsuario(send.getIdUsuario());
                 send.setUrl("http://www.institutofernandobeleboni.com.br/florestsimulator/json/progressProjetoAmostras.php");
                 send.setParams("send-project-amostras", JSON.toString(projetoAmostras));
